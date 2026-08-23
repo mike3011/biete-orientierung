@@ -1,0 +1,51 @@
+/* Gemeinsame Gestaltung der Unterseiten (Impressum, Datenschutz, Widerruf) */
+:root{
+  --paper:#E9E8DF; --surface:#F5F4EE; --raised:#FCFBF6;
+  --ink:#1A211D; --ink-2:#525E56; --ink-3:#7C8880;
+  --line:#CFCEC0; --green:#2F5347; --signal:#BE3F2B;
+  --font-display:'Fraunces','Iowan Old Style',Georgia,serif;
+  --font-body:'Archivo','Helvetica Neue',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121815; --surface:#19211D; --raised:#202A25;
+    --ink:#E8E9E0; --ink-2:#A2AEA6; --ink-3:#7E8A83;
+    --line:#2D3831; --green:#8FBAA5; --signal:#E0705A;
+  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:var(--font-body);background-color:var(--paper);color:var(--ink);
+  font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased;
+}
+nav{
+  border-bottom:1px solid var(--line);background:var(--surface);
+}
+.nav-inner{
+  max-width:760px;margin-inline:auto;padding:0 1.5rem;height:64px;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink)}
+.brand svg{width:22px;height:22px;flex:none}
+.brand b{font-family:var(--font-display);font-weight:400;font-size:1.1rem}
+.brand b i{font-style:normal;color:var(--green);font-weight:600}
+.back{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);text-decoration:none}
+.back:hover{color:var(--green)}
+main{max-width:760px;margin-inline:auto;padding:3.5rem 1.5rem 4.5rem}
+h1{font-family:var(--font-display);font-weight:300;font-size:clamp(2rem,5vw,2.9rem);line-height:1.1;margin-bottom:2rem;text-wrap:balance}
+h2{font-family:var(--font-display);font-weight:400;font-size:1.35rem;line-height:1.25;margin:2.5rem 0 .6rem;color:var(--green)}
+h3{font-family:var(--font-body);font-weight:600;font-size:1rem;margin:1.5rem 0 .35rem}
+p,li{color:var(--ink-2);font-size:.97rem;margin-bottom:.6rem}
+ul,ol{padding-left:1.2rem}
+a{color:var(--green);text-underline-offset:3px}
+strong{color:var(--ink)}
+.box{
+  background:var(--raised);border:1px solid var(--line);border-left:2px solid var(--signal);
+  padding:1.25rem 1.35rem;margin:1.5rem 0;border-radius:2px;
+}
+.box p:last-child{margin-bottom:0}
+.note{font-size:.83rem;color:var(--ink-3);margin-top:2.5rem;line-height:1.6}
+footer{border-top:1px solid var(--line);background:var(--surface);padding:2rem 1.5rem;text-align:center}
+footer a{font-size:.83rem;color:var(--ink-2);text-decoration:none;margin:0 .6rem}
+footer a:hover{color:var(--green)}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
