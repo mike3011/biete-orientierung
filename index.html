@@ -33,7 +33,7 @@
       "name": "Standortbestimmung",
       "alternateName": ["Orientierungsgespräch", "Persönliche Standortbestimmung"],
       "serviceType": "Persönliche Orientierung und Standortbestimmung",
-      "description": "Ein 90-minütiges persönliches Gespräch zur Standortbestimmung: Wo stehst du, wo willst du hin und was ist dein nächster sinnvoller Schritt? Im Anschluss erhältst du eine persönliche Standortbestimmung, ein Zielbild und eine persönliche Roadmap. Themen können Gesundheit und Bewegung, Energie und Stress, Beruf und Führung, berufliche Neuorientierung, die Zeit nach dem Abitur, Beziehungen sowie Sinn und die nächsten Jahrzehnte sein.",
+      "description": "Ein 90-minütiges persönliches Gespräch zur Standortbestimmung: Wo stehst du, wo willst du hin und was ist dein nächster sinnvoller Schritt? Im Anschluss erhältst du eine persönliche Standortbestimmung, ein Zielbild und eine persönliche Roadmap. Themen können Gesundheit und Bewegung, Energie und Stress, Beruf und Führung, berufliche Neuorientierung, Beziehungen sowie Sinn und die nächsten Jahrzehnte sein. Für junge Erwachsene nach dem Abitur ist sie ebenfalls geeignet.",
       "provider": { "@id": "https://biete-orientierung.de/#mike" },
       "areaServed": [
         { "@type": "City", "name": "Kassel" },
@@ -68,7 +68,12 @@
         "addressRegion": "Hessen",
         "addressCountry": "DE"
       },
-      "description": "Zwölf Jahre Bundeswehr, danach Unternehmer, Projektleiter und Abteilungsleiter. Bietet in Kassel persönliche Standortbestimmungen an — Orientierung statt Coaching.",
+      "description": "Zwölf Jahre Bundeswehr, danach Unternehmer, Projektleiter und Abteilungsleiter. Universitätsdiplom, internationaler MBA und Coachingausbildung an der Coach Akademie Schweiz. Bietet in Kassel persönliche Standortbestimmungen an — Orientierung statt Coaching.",
+      "hasCredential": [
+        { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Universitätsdiplom" },
+        { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Internationaler MBA" },
+        { "@type": "EducationalOccupationalCredential", "credentialCategory": "certificate", "name": "Coachingausbildung, Coach Akademie Schweiz" }
+      ],
       "knowsAbout": [
         "Orientierung", "Standortbestimmung", "Berufliche Neuorientierung",
         "Longevity und gesundes Altern", "Gesundheit und Bewegung",
@@ -102,10 +107,18 @@
         },
         {
           "@type": "Question",
+          "name": "Muss ich mich auf das Gespräch vorbereiten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nein. Du bekommst vorab einige Fragen — kein Test und keine Hausaufgabe. Sie helfen dir, deinen eigenen Standort in Worte zu fassen, und dienen als Grundlage für die persönliche Roadmap nach dem Gespräch."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Ist das Coaching oder Therapie?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Weder noch. Es ist ein Gespräch mit einem Menschen, der viel gesehen hat und sagt, was er sieht. Wenn im Gespräch deutlich wird, dass etwas ärztlich oder therapeutisch abgeklärt gehört, sage ich das ebenfalls."
+            "text": "Weder noch. Professionelles Coaching setzt ein Ziel voraus und der Coach hält seine eigene Einschätzung bewusst zurück. Eine Standortbestimmung beginnt früher — bei der Frage, wo du überhaupt stehst — und ich sage dir ausdrücklich, was ich sehe. Wenn im Gespräch deutlich wird, dass etwas ärztlich oder therapeutisch abgeklärt gehört, sage ich das ebenfalls."
           }
         },
         {
@@ -118,10 +131,10 @@
         },
         {
           "@type": "Question",
-          "name": "Mein Kind steht vor dem Abi. Passt das?",
+          "name": "Ich habe Abi. Ist die Standortbestimmung etwas für mich?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ja. Für junge Menschen nach dem Abitur ist die Frage nach dem eigenen Standort oft besonders unklar. Auf Wunsch kann das Gespräch um eine Betrachtung von Verhaltenspräferenzen, Motivationsfaktoren und Talenten ergänzt werden."
+            "text": "Nahezu ideal sogar. Nach dem Abitur reden viele auf einen ein — Eltern, Freunde, Lehrer, das Umfeld. Eine neutrale Sicht von jemandem, der nichts von einem will, ist in dieser Lage selten. Zusätzlich kann eine intensive Personaldiagnostik sinnvoll sein, die Motivationen, angeborene Talente und Verhaltenspräferenzen sichtbar macht; sie gehört nicht zur Standortbestimmung, lässt sich aber ergänzen."
           }
         }
       ]
@@ -242,6 +255,34 @@ p{max-width:62ch}
 }
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--ink-3);flex:none}
 .eyebrow.center{justify-content:center}
+
+/* ── MESSE-BAND ─────────────────────────────────────────
+   Standardmäßig ausgeblendet. Das Skript am Seitenende
+   blendet es nur bis zum 11.10.2026 ein — danach ist es
+   von selbst weg, auch ohne dass jemand etwas ändert.     */
+.messe{display:none;background:var(--panel);color:var(--panel-ink)}
+.messe.on{display:block}
+.messe-inner{
+  max-width:var(--maxw);margin-inline:auto;padding:.65rem 1.5rem;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:.35rem 1.15rem;text-align:center;
+  font-size:.78rem;letter-spacing:.08em;
+}
+.messe b{font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.messe span{color:color-mix(in srgb, var(--panel-ink) 68%, transparent);font-variant-numeric:tabular-nums}
+.messe .messe-preis{
+  font-style:normal;color:var(--signal);font-weight:600;
+  letter-spacing:.08em;white-space:nowrap;
+}
+.messe a{color:var(--panel-ink);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.messe a:hover{color:#fff}
+.messe .pin{
+  width:7px;height:7px;border-radius:50%;background:var(--signal);flex:none;
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--signal) 22%, transparent);
+}
+@media (max-width:560px){
+  .messe-inner{gap:.25rem .85rem;font-size:.72rem;padding:.6rem 1rem}
+}
 
 /* ── NAV ────────────────────────────────────────────────── */
 header.nav{
@@ -378,7 +419,8 @@ header.nav{
 .panel p{color:color-mix(in srgb, var(--panel-ink) 72%, transparent)}
 .panel .eyebrow{color:color-mix(in srgb, var(--panel-ink) 55%, transparent)}
 .panel .eyebrow::before{background:color-mix(in srgb, var(--panel-ink) 40%, transparent)}
-.not-list{list-style:none;display:flex;flex-wrap:wrap;gap:.55rem;margin:2rem 0 2.5rem}
+.not-list{list-style:none;display:flex;flex-wrap:wrap;gap:.55rem;margin:2rem 0 2.2rem}
+.panel .pull{margin-top:2.6rem}
 .not-list li{
   border:1px solid color-mix(in srgb, var(--panel-ink) 22%, transparent);
   color:color-mix(in srgb, var(--panel-ink) 55%, transparent);
@@ -397,6 +439,32 @@ header.nav{
   color:var(--panel-ink);margin:3rem 0 .9rem;max-width:30ch;
 }
 .panel p + p{margin-top:.9rem}
+
+/* ── VERGLEICH IM DUNKLEN BLOCK ─────────────────────────── */
+.vergleich{margin-top:2.25rem;max-width:52rem}
+.vgl-kopf,.vgl-zeile{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem}
+.vgl-kopf{
+  padding-bottom:.7rem;border-bottom:1px solid color-mix(in srgb, var(--panel-ink) 30%, transparent);
+  font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+}
+.vgl-kopf .a{color:color-mix(in srgb, var(--panel-ink) 50%, transparent)}
+.vgl-kopf .b{color:var(--signal);font-weight:600}
+.vgl-zeile{
+  padding:.95rem 0;border-bottom:1px solid color-mix(in srgb, var(--panel-ink) 14%, transparent);
+  font-size:.97rem;line-height:1.5;
+}
+.vgl-zeile .a{color:color-mix(in srgb, var(--panel-ink) 55%, transparent)}
+.vgl-zeile .b{color:var(--panel-ink)}
+@media (max-width:680px){
+  .vgl-kopf{display:none}
+  .vgl-zeile{grid-template-columns:1fr;gap:.45rem;padding:1.05rem 0}
+  .vgl-zeile .a::before,.vgl-zeile .b::before{
+    display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+    margin-bottom:.2rem;
+  }
+  .vgl-zeile .a::before{content:"Coaching";color:color-mix(in srgb, var(--panel-ink) 40%, transparent)}
+  .vgl-zeile .b::before{content:"Standortbestimmung";color:var(--signal)}
+}
 
 /* ── MIKE ───────────────────────────────────────────────── */
 .mike-grid{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:2.75rem;align-items:start}
@@ -480,13 +548,24 @@ footer{border-top:1px solid var(--line);padding-block:2.75rem;background:var(--s
 </head>
 <body>
 
+<div class="messe" id="messe">
+  <div class="messe-inner">
+    <span class="pin" aria-hidden="true"></span>
+    <b>Herbst-Ausstellung Kassel</b>
+    <span id="messe-zeit">Nur am 3. und 4. Oktober</span>
+    <span>Halle 5 · Stand 545</span>
+    <em class="messe-preis">Sonderpreis nur am Stand</em>
+    <a href="https://www.herbst-ausstellung.de/" target="_blank" rel="noopener">Zur Messe</a>
+  </div>
+</div>
+
 <header class="nav">
   <div class="nav-inner">
     <a class="brand" href="#hero" aria-label="biete Orientierung – Startseite">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M12 4.5v2M12 17.5v2M4.5 12h2M17.5 12h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-        <circle cx="12" cy="12" r="2.6" fill="#BE3F2B"/>
+      <svg viewBox="0 0 25 25" fill="none" aria-hidden="true">
+        <circle cx="12.5" cy="12.5" r="12" stroke="currentColor" stroke-width="1"/>
+        <circle cx="12.5" cy="12.5" r="7" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="12.5" cy="12.5" r="3.33" fill="#BE3F2B"/>
       </svg>
       <b>biete <i>Orientierung</i></b>
     </a>
@@ -671,7 +750,7 @@ footer{border-top:1px solid var(--line);padding-block:2.75rem;background:var(--s
   <div class="wrap rv">
     <p class="eyebrow">Das Gespräch</p>
     <h2>90 Minuten. Ein Gespräch.<br>Kein Programm.</h2>
-    <p class="lead">Wir setzen uns zusammen und schauen uns deine Situation an. Ohne Fragebogen, den du vorher ausfüllen musst, und ohne Modell, in das du hineinpassen sollst.</p>
+    <p class="lead">Wir setzen uns zusammen und schauen uns deine Situation an. Du musst dich nicht vorbereiten. Vor dem Gespräch bekommst du einige Fragen, die dir helfen, deinen eigenen Standort zu beschreiben. Ein Modell, in das du hineinpassen sollst, gibt es nicht.</p>
     <ul class="rules">
       <li><span class="tick">→</span><span><b>Zuhören.</b> <span class="t">Was beschäftigt dich gerade? Was läuft gut? Womit bist du unzufrieden?</span></span></li>
       <li><span class="tick">→</span><span><b>Standort klären.</b> <span class="t">Wo stehst du — körperlich, beruflich, persönlich? Was davon ist gerade das Entscheidende?</span></span></li>
@@ -716,7 +795,7 @@ footer{border-top:1px solid var(--line);padding-block:2.75rem;background:var(--s
     <p class="lead">Wenn du dich in einem dieser Sätze wiederfindest, ist eine Standortbestimmung wahrscheinlich sinnvoll.</p>
     <div class="situations">
       <div class="sit"><b>Beruflich neu sortieren</b><span>Etwas passt nicht mehr, aber die Alternative ist noch unscharf.</span></div>
-      <div class="sit"><b>Nach dem Abi</b><span>Ausbildung, Studium, erst mal etwas anderes — und niemand hat die Antwort.</span></div>
+      <div class="sit"><b>Vor einer großen Entscheidung</b><span>Etwas Grundsätzliches steht an, und du willst es nicht aus dem Bauch heraus entscheiden.</span></div>
       <div class="sit"><b>Neue Lebensphase</b><span>Kinder aus dem Haus, Trennung, Jobwechsel, ein runder Geburtstag.</span></div>
       <div class="sit"><b>Gesundheit und Bewegung</b><span>Du weißt, dass du etwas tun solltest. Nur nicht, wo du anfängst.</span></div>
       <div class="sit"><b>Energie und Stress</b><span>Es funktioniert alles. Es kostet nur zunehmend mehr.</span></div>
@@ -736,13 +815,41 @@ footer{border-top:1px solid var(--line);padding-block:2.75rem;background:var(--s
       <li>Life Coach</li><li>Longevity Coach</li><li>Karriereberater</li>
       <li>Gesundheitsberater</li><li>Personal Trainer</li><li>Therapeut</li>
     </ul>
+    <p>Nicht, weil da nichts wäre. Ein Universitätsstudium mit Diplom, ein internationaler MBA und eine fundierte Coachingausbildung an der Coach Akademie Schweiz stehen in meinem Lebenslauf.</p>
+    <p>Nur beschreibt keiner dieser Abschlüsse, was in einer Standortbestimmung tatsächlich passiert. Sobald ich mich Longevity Coach nenne, hast du ein Konzept im Kopf und denkst, es ginge um Gesundheit. Nenne ich mich Karriereberater, denkst du an den Job. Beides wäre zu klein. Für das, was wir in diesen 90 Minuten tun, gibt es keinen guten Namen — es ist vielschichtiger, als ein Titel abbilden kann.</p>
+
     <p class="pull">„Ich habe keine Methode, in die du hineinpassen musst. Ich bringe meine Erfahrung mit und stelle sie dir zur Verfügung.“</p>
     <p>Ich verkaufe kein Paket, in das dein Leben passen soll. Ich habe kein Programm, das für alle gleich gut funktioniert. Ich bin die Summe meiner Erfahrungen — und die stelle ich für deine Standortbestimmung zur Verfügung.</p>
 
     <h3>Longevity Coach, Life Coach, Karriereberater — was davon bin ich?</h3>
     <p>Dem Titel nach nichts davon. Wer in Kassel nach einem Longevity Coach, einem Life Coach, einer Karriereberatung oder einer Gesundheitsberatung sucht, sucht in aller Regel nicht den Titel, sondern eine Antwort auf eine einzige Frage: Wie geht es weiter?</p>
-    <p>Die Themen hinter diesen Begriffen kommen in einer Standortbestimmung fast alle vor — Gesundheit und Bewegung, Energie und Stress, gesundes Älterwerden, Beruf und Führung, berufliche Neuorientierung, die Zeit nach dem Abitur, Sinn und die nächsten dreißig Jahre. Nur entscheide ich nicht vorher, welches davon deines ist.</p>
+    <p>Die Themen hinter diesen Begriffen kommen in einer Standortbestimmung fast alle vor — Gesundheit und Bewegung, Energie und Stress, gesundes Älterwerden, Beruf und Führung, berufliche Neuorientierung, Sinn und die nächsten dreißig Jahre. Nur entscheide ich nicht vorher, welches davon deines ist.</p>
     <p>Und wenn sich im Gespräch zeigt, dass genau so jemand dein nächster Schritt wäre — eine Ernährungsberatung, ein Personal Trainer, eine ärztliche Abklärung, ein Coaching, eine Weiterbildung — dann steht das in deiner Roadmap. Aber eben erst, wenn klar ist, wo du stehst.</p>
+
+    <h3>Und was macht ein Coach eigentlich?</h3>
+    <p>Professionelles Coaching ist klar definiert. Der Coach begleitet dich durch einen Prozess, hält seine eigene Meinung aber bewusst zurück: Du giltst als Experte für dein Leben, er stellt die Fragen. Das ist ein gutes Verfahren — es setzt nur voraus, dass du schon weißt, woran du arbeiten willst. Genau da fängt eine Standortbestimmung an.</p>
+
+    <div class="vergleich">
+      <div class="vgl-kopf"><span class="a">Coaching</span><span class="b">Standortbestimmung</span></div>
+      <div class="vgl-zeile">
+        <span class="a">Setzt ein Ziel voraus, an dem gearbeitet wird.</span>
+        <span class="b">Beginnt bei der Frage, wo du überhaupt stehst.</span>
+      </div>
+      <div class="vgl-zeile">
+        <span class="a">Der Coach gibt keine Einschätzung und keine Empfehlung.</span>
+        <span class="b">Ich sage dir, was ich sehe. Auch wenn es unbequem ist.</span>
+      </div>
+      <div class="vgl-zeile">
+        <span class="a">Ein Prozess über Wochen oder Monate, meist als Paket.</span>
+        <span class="b">Ein Gespräch. 90 Minuten. Danach entscheidest du.</span>
+      </div>
+      <div class="vgl-zeile">
+        <span class="a">Du erarbeitest deine Antworten selbst.</span>
+        <span class="b">Du bekommst eine Einschätzung von außen und eine Roadmap.</span>
+      </div>
+    </div>
+
+    <p style="margin-top:1.6rem">Deshalb nenne ich das hier nicht Coaching. Und deshalb kann eine Standortbestimmung sogar der Schritt sein, der vor einem Coaching kommt — wenn sich zeigt, dass genau das dein nächster sinnvoller Schritt wäre.</p>
   </div>
 </section>
 
@@ -793,6 +900,7 @@ footer{border-top:1px solid var(--line);padding-block:2.75rem;background:var(--s
         <ol class="flow">
           <li><span><b>Termin wählen.</b> Du siehst meine freien Zeiten der nächsten Wochen und suchst dir aus, was passt.</span></li>
           <li><span><b>Bezahlen.</b> Direkt im selben Schritt, sicher über Stripe. Danach ist dein Termin bestätigt.</span></li>
+          <li><span><b>Ein paar Fragen vorab.</b> Kein Test. Sie helfen dir, deinen Standort zu beschreiben — und mir, gut vorbereitet zu sein.</span></li>
           <li><span><b>Das Gespräch.</b> 90 Minuten, persönlich in Kassel oder per Video.</span></li>
           <li><span><b>Deine Auswertung.</b> Standortbestimmung, Zielbild und Roadmap schriftlich im Anschluss.</span></li></ol>
         <p class="fineprint">Die Rechnung bekommst du im Anschluss per E-Mail. Termine kannst du bis 48 Stunden vorher kostenfrei verschieben.</p>
@@ -813,11 +921,15 @@ footer{border-top:1px solid var(--line);padding-block:2.75rem;background:var(--s
       </details>
       <details>
         <summary>Ist das Coaching oder Therapie?</summary>
-        <div class="a"><p>Weder noch. Es ist ein Gespräch mit einem Menschen, der viel gesehen hat und dir sagt, was er sieht. Wenn im Gespräch deutlich wird, dass etwas ärztlich oder therapeutisch abgeklärt gehört, sage ich dir das ebenfalls.</p></div>
+        <div class="a"><p>Weder noch. Professionelles Coaching setzt ein Ziel voraus, an dem gearbeitet wird, und der Coach hält seine eigene Einschätzung bewusst zurück. Eine Standortbestimmung beginnt früher — bei der Frage, wo du überhaupt stehst — und ich sage dir ausdrücklich, was ich sehe.</p><p>Wenn im Gespräch deutlich wird, dass etwas ärztlich oder therapeutisch abgeklärt gehört, sage ich dir das ebenfalls.</p></div>
       </details>
       <details>
         <summary>Bist du ein Longevity Coach oder ein Life Coach?</summary>
         <div class="a"><p>Dem Titel nach nicht. Ich nenne mich weder Longevity Coach noch Life Coach, Karriereberater, Gesundheitsberater oder Personal Trainer. Die Themen hinter diesen Begriffen — Gesundheit, Bewegung, Energie, Beruf, Sinn, gesundes Älterwerden — kommen in einer Standortbestimmung trotzdem regelmäßig vor. Der Unterschied: Ich lege nicht vorher fest, welches davon dein Thema ist.</p></div>
+      </details>
+      <details>
+        <summary>Muss ich mich auf das Gespräch vorbereiten?</summary>
+        <div class="a"><p>Nein. Du bekommst vorab einige Fragen — die sind kein Test und keine Hausaufgabe. Sie helfen dir, deinen eigenen Standort in Worte zu fassen, und mir, gut vorbereitet in unser Gespräch zu gehen. Auf dieser Grundlage kann ich dir hinterher auch eine Roadmap zeichnen, die wirklich zu dir passt.</p></div>
       </details>
       <details>
         <summary>Was passiert mit dem, was ich erzähle?</summary>
@@ -832,8 +944,8 @@ footer{border-top:1px solid var(--line);padding-block:2.75rem;background:var(--s
         <div class="a"><p>Beides ist möglich: persönlich in Kassel oder per Video — inhaltlich macht es keinen Unterschied.</p></div>
       </details>
       <details>
-        <summary>Mein Kind steht vor dem Abi. Passt das?</summary>
-        <div class="a"><p>Ja. Für junge Menschen nach dem Abitur ist die Frage nach dem Standort oft besonders unklar — die Erwartungen von außen sind laut, die eigene Stimme leise. Auf Wunsch kann ich das Gespräch um eine Betrachtung von Verhaltenspräferenzen, Motivationsfaktoren und Talenten ergänzen. Sprich mich einfach vorher darauf an.</p></div>
+        <summary>Ich habe Abi. Ist die Standortbestimmung etwas für mich?</summary>
+        <div class="a"><p>Nahezu ideal sogar. Wahrscheinlich reden gerade viele auf dich ein — Eltern, Freunde, Lehrer, das Umfeld. Eine neutrale Sicht von jemandem, der nichts von dir will, ist in dieser Lage selten. Wir schauen ohne Vorannahme darauf, wo du stehst und wie du eigentlich leben möchtest.</p><p>Zusätzlich kann in deiner Situation eine intensive Personaldiagnostik sinnvoll sein. Sie macht sichtbar, was dich motiviert, welche Talente angeboren sind und welche Verhaltenspräferenzen du mitbringst. Das gehört nicht zur Standortbestimmung, lässt sich aber ergänzen — sprich mich einfach vorher darauf an.</p></div>
       </details>
       <details>
         <summary>Wie schnell bekomme ich einen Termin?</summary>
@@ -894,6 +1006,25 @@ const KAUF_URL = "https://cal.com/mike-trepte/standortbestimmung-mit-mike";
     document.querySelectorAll("[data-buy]").forEach(function (a) {
       if (a.getAttribute("href") === "#") a.setAttribute("href", "#preis");
     });
+  }
+
+  /* Messe-Band. Die Herbst-Ausstellung läuft bis zum 11.10.,
+     Mike ist aber nur am 3. und 4.10. am Stand — deshalb endet
+     das Band am Abend des 4.10. und verschwindet von selbst. */
+  var messe = document.getElementById("messe");
+  if (messe) {
+    var jetzt  = new Date();
+    var tag1   = new Date(2026, 9, 3);              // 3. Oktober 2026
+    var tag2   = new Date(2026, 9, 4);              // 4. Oktober 2026
+    var ende   = new Date(2026, 9, 4, 23, 59, 59);  // letzter Standtag
+    if (jetzt <= ende) {
+      messe.classList.add("on");
+      var zeit = document.getElementById("messe-zeit");
+      if (zeit) {
+        if (jetzt >= tag2)      zeit.textContent = "Heute am Stand";
+        else if (jetzt >= tag1) zeit.textContent = "Heute und morgen am Stand";
+      }
+    }
   }
 
   /* Jahr im Footer */
