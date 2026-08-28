@@ -1,0 +1,136 @@
+PARALLELER ENTWURF — MESSE-VARIANTE
+Stand: 27.08.2026
+
+WAS DAS HIER IST
+Ein eigenständiger, kompletter Entwurf der Website im Look der neuen
+Werbemittel (Messeangebot, Gutschein, Roll-up, Flyer). Er liegt bewusst
+in einem eigenen Unterordner: der Entwurf vom 27.08. eine Ebene höher
+bleibt unangetastet, du kannst beide nebeneinander ansehen.
+
+ANSEHEN
+index.html doppelklicken. Es wird nichts nachgeladen, keine Internet-
+verbindung nötig.
+
+DATEIEN
+  index.html      Startseite (Fassung ohne Preisangabe zur Messe)
+  index2.html     ZWEITE VARIANTE nach dem Aenderungsbriefing:
+                  Zielbild -> Standort -> Richtung -> naechste Schritte,
+                  neue Texte, Vierschritt-Pfad, Roadmap-Mockup.
+                  Beide Fassungen nutzen dieselbe design.css und liegen
+                  nebeneinander — zum Vergleichen einfach beide oeffnen.
+  messe.html      Messeseite — das Ziel für den QR-Code auf Flyer,
+                  Roll-up und Gutschein (299 EUR statt 390 EUR)
+  design.css      DAS DESIGN-SYSTEM. Alle Farben, Schriften und Abstaende
+                  stehen oben im :root-Block. Wenn die Designdatei kommt,
+                  werden dort nur Werte getauscht — das Layout zieht nach.
+  favicon.svg     Kompass-Logo
+  assets/fonts/   Schriften liegen LOKAL (Anton, Caveat, Inter, alle
+                  SIL Open Font License). Es wird kein Google-Server
+                  angefragt — anders als bei der alten Seite.
+  assets/         lebenslandkarte.webp
+  impressum.html    deine neuen Rechtstexte, im Look der Webseite
+  datenschutz.html  dito
+  widerruf.html     dito
+  subpage.css       nur die Bausteine, die es NUR auf den Rechtsseiten
+                    gibt (Adressblock, Inhaltsverzeichnis, Hinweiskasten,
+                    Widerrufsformular). Farben, Schriften und Abstaende
+                    kommen weiterhin aus design.css — die Rechtsseiten
+                    binden BEIDE Dateien ein.
+  postkarte.html    Quelldatei der A6-Postkarte
+  mike.jpg, robots.txt, sitemap.xml, llms.txt  — unveraendert uebernommen
+
+ZU DEN RECHTSSEITEN
+Inhalt kommt unveraendert aus deinen Dateien impressum_neu.html,
+datenschutz_neu.html und widerruf_neu.html eine Ebene hoeher — die
+Originale sind unangetastet. Geaendert wurde nur die Gestaltung:
+  - die grosse Kompassrosette im Kopfbereich ist entfernt
+  - in der Kopfzeile steht jetzt dasselbe Kompass-Signet neben
+    "biete Orientierung" wie auf der Startseite
+  - Ueberschriften in Anton mit goldener Linie, Kicker in Gold,
+    Adressblock und Kaesten in den Farben der Webseite
+  - Fusszeile identisch zur Startseite
+
+WAS DRIN IST
+  assets/hero.jpg + hero-1000.jpg   dein Header-Foto, weboptimiert
+                                    (1774 px und 1000 px, wird je nach
+                                    Bildschirm automatisch gewaehlt)
+  assets/Lebenslandkarte.pdf        die Keine-Idee-Karte zum Herunterladen
+  assets/karte-ausschnitt.webp      Teaser-Ausschnitt mit lesbaren Ortsnamen
+  assets/lebenslandkarte-
+    beschriftet.webp                WIRD NICHT MEHR VERWENDET und kann
+                                    geloescht werden — der Klick auf den
+                                    Ausschnitt laedt jetzt das PDF
+  assets/pikto/                     deine Piktogramme Kopf, Herz, Koerper
+                                    (die Variante weiss im farbigen Kreis).
+                                    Beim Kopf-Piktogramm war der Kreis in
+                                    der Vorlage an den Raendern abgeflacht
+                                    und hatte unten rechts einen Farbfleck —
+                                    beides ist bereinigt.
+
+UNTERSCHIED index.html / index2.html
+Beide Fassungen nennen zur Messe KEINE Zahl. Sichtbar ist nur der regulaere
+Preis von 390 EUR; der Messepreis steht ausschliesslich bei Cal.com. Von der
+Startseite fuehrt waehrend des Messezeitraums nur ein Hinweis auf messe.html.
+
+  index.html   erste Fassung, Aufbau wie bisher.
+  index2.html  zweite Fassung nach dem Aenderungsbriefing:
+               Zielbild -> Standort -> Richtung -> naechste Schritte.
+
+In beiden Dateien haengt alles Messebezogene an einem Schalter ganz unten
+im Skript:  const MESSE_ZEIGEN = true;  (in index.html ueber das Datum
+gesteuert). Auf false setzen und Banner, Menuepunkt und Hinweis sind weg.
+
+DAS MESSEANGEBOT
+Auf der Webseite steht bewusst KEINE Zahl — weder 299 noch 390 Euro.
+Der Messepreis wird erst bei Cal.com sichtbar. Alle Messe-Knoepfe fuehren
+auf den eigenen Termin:
+  https://cal.com/mike-trepte/messepreis-standortbestimmung-mit-mike
+Der regulaere Preis (390 Euro) steht weiterhin auf der Startseite in der
+Preissektion — der war nie Teil des Messeangebots.
+
+  ACHTUNG, DER WICHTIGSTE PUNKT:
+  Das Ausblenden auf der Webseite ist nur Kosmetik. Der echte Schalter
+  sitzt bei Cal.com. Deaktiviere den Messepreis-Termin dort nach dem
+  5.10.2026 (oder gib ihm einen Private Link mit Ablaufdatum), sonst
+  kann ihn jemand mit dem alten Link im Dezember noch buchen.
+
+ZUR LEBENSLANDKARTE (Textstand aktuell)
+Der Abschnitt sagt jetzt: Die Karte gibt es in Lebensgroesse als 2 x 1,5 m
+Bodenkarte, man kann sich in der Standortbestimmung tatsaechlich darauf
+stellen, zu Messen und Veranstaltungen nimmst du sie mit, und wer bucht
+bekommt sie auf Wunsch hochaufloesend. Steht so in index.html UND index2.html.
+
+FRUEHERER STAND
+Die Sektion "Noch keine Idee, wo du hinwillst?" zeigt einen Ausschnitt
+mit lesbaren Ortsnamen, weist auf die 2 x 1,5 m Bodenkarte am Messestand
+hin und bietet die Karte als PDF zum Herunterladen an.
+
+Der Ausschnitt selbst ist anklickbar und laedt ebenfalls das PDF — genau
+wie der Button darunter. Die Karte in voller Aufloesung ist also nirgends
+frei im Browser ansehbar, es gibt immer nur das PDF.
+
+Ausschnitt und Vollkarte stammen aus der Druckvorlage
+Druckdaten etc/Lebenslandkarte_REALLY_REALLY_FINAL_2020x1520mm.pdf
+(5726 x 4309 Pixel) und sind daher gestochen scharf. Das PDF zum
+Herunterladen ist die gerahmte Fassung Keine_Idee_Karte.pdf. Die aeltere Datei
+assets/lebenslandkarte.webp zeigt dieselbe Illustration OHNE Beschriftung
+und wird nicht mehr verwendet — sie kann bleiben oder geloescht werden.
+
+ZUM HEADER-UEBERGANG
+Das Foto laeuft nach unten weich aus, statt an einer Kante zu enden.
+Gesteuert wird das in design.css unter ".hero-media" ueber mask-image.
+Wenn der Uebergang kuerzer oder laenger werden soll: die Prozentwerte
+im linear-gradient anpassen (beide Zeilen, -webkit- und ohne Praefix).
+
+AUTOMATIK
+Messe-Banner und Messe-Hinweis blenden sich nach dem 04.10.2026 selbst
+aus. Die Messeseite kennzeichnet das Angebot danach automatisch als
+abgelaufen. Das Datum steht in beiden Dateien ganz unten als MESSE_ENDE.
+
+BUCHUNGSLINK
+Steht in beiden HTML-Dateien unten als KAUF_URL:
+https://cal.com/mike-trepte/standortbestimmung-mit-mike
+
+VEROEFFENTLICHEN (erst wenn du zufrieden bist)
+Inhalt dieses Ordners ins Webroot von biete-orientierung.de kopieren,
+gleichnamige Dateien ersetzen, assets/ mit hochladen.

@@ -1,89 +1,34 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Widerrufsbelehrung | biete Orientierung</title>
-<meta name="robots" content="noindex, follow">
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Widerrufsbelehrung | biete Orientierung</title><meta name="robots" content="noindex,follow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0e2740">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400&display=swap">
-<link rel="stylesheet" href="subpage.css">
-<style>
-  .adresse{margin:1rem 0;line-height:1.65}
-  .formular{background:var(--raised);border:1px solid var(--line);border-radius:2px;padding:1.5rem 1.5rem 1.75rem;margin-top:1.5rem}
-  .formular p{margin-bottom:.9rem}
-  .feld{display:block;border-bottom:1px solid var(--line);padding:1.35rem 0 .35rem;color:var(--ink-3);font-size:.9rem}
-</style>
-</head>
-<body>
+<link rel="preload" href="assets/fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="design.css">
+<link rel="stylesheet" href="subpage.css"></head><body>
 <nav>
-  <div class="nav-inner">
-    <a class="brand" href="index.html">
-      <svg viewBox="0 0 25 25" fill="none" aria-hidden="true">
-        <circle cx="12.5" cy="12.5" r="12" stroke="currentColor" stroke-width="1"/>
-        <circle cx="12.5" cy="12.5" r="7" stroke="currentColor" stroke-width="1.4"/>
-        <circle cx="12.5" cy="12.5" r="3.33" fill="#BE3F2B"/>
-      </svg>
-      <b>biete <i>Orientierung</i></b>
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand" aria-label="biete Orientierung – zur Startseite">
+      <svg aria-hidden="true" style="color:var(--gold)" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="21"/><circle cx="24" cy="24" r="14.5" opacity=".55"/><path d="M24 11.5 L28.4 24 L24 36.5 L19.6 24 Z" fill="currentColor" stroke="none"/><circle cx="24" cy="24" r="2.4" stroke-width="1.6"/></svg>
+      <span class="brand-txt">
+        <span class="n">biete <b>Orientierung</b></span>
+        <span class="c">Klarheit · Richtung · Nächster Schritt</span>
+      </span>
     </a>
-    <a class="back" href="index.html">← Zurück</a>
+    <a class="back" href="index.html">← Zurück zur Startseite</a>
   </div>
 </nav>
-<main>
-  <h1>Widerrufsbelehrung</h1>
-
-  <h2>Widerrufsrecht</h2>
-  <p>Wenn du Verbraucher bist, hast du bei einem online geschlossenen Vertrag über die Erbringung einer Dienstleistung grundsätzlich ein gesetzliches Widerrufsrecht.</p>
-  <p>Die Widerrufsfrist beträgt 14 Tage ab dem Tag des Vertragsschlusses.</p>
-  <p>Um dein Widerrufsrecht auszuüben, musst du uns</p>
-  <p class="adresse">
-    Nadine Rau und Mike Trepte GbR<br>
-    Bettenhäuser Str. 1<br>
-    34123 Kassel<br>
-    E-Mail: <a href="mailto:mike.trepte@managershop.com">mike.trepte@managershop.com</a>
-  </p>
-  <p>mittels einer eindeutigen Erklärung, zum Beispiel per E-Mail, über deinen Entschluss informieren, den Vertrag zu widerrufen.</p>
-  <p>Du kannst dafür das untenstehende Muster-Widerrufsformular verwenden. Die Verwendung des Formulars ist jedoch nicht vorgeschrieben.</p>
-  <p>Zur Wahrung der Widerrufsfrist reicht es aus, dass du die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absendest.</p>
-
-  <h2>Folgen des Widerrufs</h2>
-  <p>Wenn du den Vertrag widerrufst, erstatten wir dir alle Zahlungen, die wir von dir erhalten haben, unverzüglich und spätestens innerhalb von 14 Tagen ab dem Tag, an dem deine Widerrufserklärung bei uns eingegangen ist.</p>
-  <p>Für die Rückzahlung verwenden wir grundsätzlich dasselbe Zahlungsmittel, das du bei der ursprünglichen Transaktion eingesetzt hast, sofern mit dir nicht ausdrücklich etwas anderes vereinbart wurde.</p>
-
-  <h2>Beginn der Dienstleistung vor Ablauf der Widerrufsfrist</h2>
-  <p>Du kannst ausdrücklich verlangen, dass wir mit der vereinbarten Dienstleistung bereits vor Ablauf der gesetzlichen Widerrufsfrist beginnen.</p>
-  <p>Wenn du dies bei der Buchung ausdrücklich verlangst, bestätigst du gleichzeitig, dass du darüber informiert wurdest, dass dein Widerrufsrecht bei vollständiger Erbringung der Dienstleistung erlöschen kann, sofern die gesetzlichen Voraussetzungen hierfür erfüllt sind.</p>
-  <p>Wenn du die vorzeitige Erbringung der Dienstleistung ausdrücklich verlangt hast und den Vertrag anschließend innerhalb der Widerrufsfrist widerrufst, kann ein angemessener Wertersatz für die bis zum Zeitpunkt des Widerrufs bereits erbrachte Leistung zu zahlen sein, soweit die gesetzlichen Voraussetzungen hierfür erfüllt sind.</p>
-
-  <h2>Buchung von Terminen</h2>
-  <p>Die jeweils angebotenen Leistungen, Termine, Preise und sonstigen Konditionen ergeben sich aus dem zum Zeitpunkt der Buchung jeweils aktuellen Angebot.</p>
-  <p>Aktions-, Messe- oder Sonderpreise können zeitlich oder anderweitig begrenzt sein. Maßgeblich sind die Konditionen, die dir vor Abschluss der jeweiligen Buchung angezeigt werden.</p>
-
-  <h2>Muster-Widerrufsformular</h2>
-  <p>Wenn du den Vertrag widerrufen möchtest, kannst du das folgende Formular verwenden. Die Verwendung ist nicht vorgeschrieben.</p>
-
-  <div class="formular">
-    <p>An:</p>
-    <p class="adresse">
-      Nadine Rau und Mike Trepte GbR<br>
-      Bettenhäuser Str. 1<br>
-      34123 Kassel<br>
-      E-Mail: <a href="mailto:mike.trepte@managershop.com">mike.trepte@managershop.com</a>
-    </p>
-    <p>Hiermit widerrufe ich den von mir abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung:</p>
-    <span class="feld">Bestellt am / erhalten am:</span>
-    <span class="feld">Name des Verbrauchers:</span>
-    <span class="feld">Anschrift des Verbrauchers:</span>
-    <span class="feld">Datum:</span>
-    <span class="feld">Unterschrift des Verbrauchers (nur bei Mitteilung auf Papier):</span>
+<header class="rechts-hero"><div class="narrow"><p class="kicker">Deine Rechte bei einer Online-Buchung</p><h1>Widerruf</h1><p>Hier findest du die gesetzliche Widerrufsbelehrung und das Muster-Widerrufsformular.</p></div></header>
+<main class="page"><div class="narrow"><section><h2>Widerrufsbelehrung</h2><h3>Widerrufsrecht</h3><p>Du hast das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p><p>Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsschlusses.</p><p>Um dein Widerrufsrecht auszuüben, musst du uns</p><div class="address">Nadine Rau und Mike Trepte GbR<br>Bettenhäuserstr. 1<br>34123 Kassel<br>Deutschland<br>E-Mail: <a href="mailto:mike@mindmike.de">mike@mindmike.de</a></div><p>mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder eine E-Mail) über deinen Entschluss, diesen Vertrag zu widerrufen, informieren. Du kannst dafür das unten beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.</p><p>Zur Wahrung der Widerrufsfrist reicht es aus, dass du die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absendest.</p><h3>Folgen des Widerrufs</h3><p>Wenn du diesen Vertrag widerrufst, haben wir dir alle Zahlungen, die wir von dir erhalten haben, unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über deinen Widerruf dieses Vertrags bei uns eingegangen ist.</p><p>Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das du bei der ursprünglichen Transaktion eingesetzt hast, es sei denn, mit dir wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden dir wegen dieser Rückzahlung Entgelte berechnet.</p><p>Hast du verlangt, dass die Dienstleistung während der Widerrufsfrist beginnen soll, so hast du uns einen angemessenen Betrag zu zahlen, der dem Anteil der bis zu dem Zeitpunkt, zu dem du uns von der Ausübung des Widerrufsrechts hinsichtlich dieses Vertrags unterrichtest, bereits erbrachten Dienstleistungen im Vergleich zum Gesamtumfang der im Vertrag vorgesehenen Dienstleistungen entspricht.</p></section>
+<section><h2>Vorzeitiger Beginn der Dienstleistung</h2><div class="notice"><strong>Wichtig bei kurzfristigen Terminen:</strong><br>Wenn du ausdrücklich verlangst, dass wir vor Ablauf der 14-tägigen Widerrufsfrist mit der Dienstleistung beginnen, kann die Leistung bereits innerhalb dieser Frist erbracht werden. Bei einem späteren Widerruf kann für bereits erbrachte Leistungen Wertersatz anfallen. Bei vollständiger Erbringung der Dienstleistung erlischt das Widerrufsrecht, wenn du zuvor ausdrücklich zugestimmt hast, dass wir vor Ablauf der Widerrufsfrist mit der Leistung beginnen, und deine Kenntnis davon bestätigt hast, dass du dein Widerrufsrecht bei vollständiger Vertragserfüllung verlierst.</div></section>
+<section><h2>Muster-Widerrufsformular</h2><p>Wenn du den Vertrag widerrufen willst, kannst du dieses Formular verwenden und an uns senden. Die Verwendung des Formulars ist nicht vorgeschrieben.</p><div class="formbox"><p>An:<br><strong>Nadine Rau und Mike Trepte GbR</strong><br>Bettenhäuserstr. 1<br>34123 Kassel<br>Deutschland<br>E-Mail: <a href="mailto:mike@mindmike.de">mike@mindmike.de</a></p><p>Hiermit widerrufe ich den von mir abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung:</p><span class="field">Dienstleistung:</span><span class="field">Bestellt am:</span><span class="field">Name des Verbrauchers:</span><span class="field">Anschrift des Verbrauchers:</span><span class="field">Datum:</span><span class="field">Unterschrift des Verbrauchers (nur bei Mitteilung auf Papier):</span></div></section><p class="small">Stand: August 2026</p></div></main><footer>
+  <div class="wrap foot">
+    <small>© <span id="yr">2026</span> Nadine Rau und Mike Trepte GbR · Kassel</small>
+    <ul class="foot-links">
+      <li><a href="index.html">Startseite</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+      <li><a href="mailto:mike@mindmike.de">mike@mindmike.de</a></li>
+    </ul>
   </div>
-</main>
-<footer>
-  <a href="index.html">Startseite</a>
-  <a href="impressum.html">Impressum</a>
-  <a href="datenschutz.html">Datenschutz</a>
 </footer>
-</body>
-</html>
+<script>var y=document.getElementById('yr');if(y)y.textContent=new Date().getFullYear();</script></body></html>

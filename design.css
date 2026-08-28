@@ -1,0 +1,644 @@
+/* =====================================================================
+   biete-orientierung.de · Design-System
+   ---------------------------------------------------------------------
+   EINZIGE QUELLE für Farben, Schriften und Abstände.
+   Wenn die Designdatei kommt: nur die Werte im :root-Block unten
+   austauschen — das Layout zieht automatisch nach.
+   ===================================================================== */
+
+/* ---------- 1. SCHRIFTEN (lokal gehostet, keine Google-Server) ------- */
+@import url("assets/fonts/fonts.css");
+
+/* ---------- 2. DESIGN-TOKENS ---------------------------------------- */
+:root{
+  /* Flächen — warme Creme-Basis wie im grafischen Entwurf */
+  --paper:#faf6ee;
+  --cream:#f2ebdd;
+  --sand:#e8dfcc;
+  --white:#fff;
+
+  /* Dunkle Blöcke — Marineblau wie Messeangebot, Gutschein, Roll-up */
+  --navy:#0e2740;
+  --navy-2:#16375a;
+  --navy-deep:#081b2e;
+
+  /* Gold — zwei Stufen, damit Text überall lesbar bleibt */
+  --gold:#b8862f;        /* Dekoration, große Zahlen, Linien */
+  --gold-ink:#8a6318;    /* kleiner Goldtext auf hellem Grund (AA) */
+  --gold-lt:#e2b25c;     /* Gold auf dunklem Grund */
+
+  /* Kopf · Herz · Körper */
+  --kopf:#0c2239;
+  --herz:#ac7c38;
+  --koerper:#4b5544;
+
+  /* Text */
+  --ink:#1a2430;
+  --muted:#5a6672;
+  --line:#ddd2bd;
+  --line-dark:rgba(255,255,255,.16);
+
+  /* Schriftfamilien */
+  --font-display:"Anton","Archivo Black","Haettenschweiler",Impact,sans-serif;
+  --font-script:"Caveat","Segoe Script","Bradley Hand",cursive;
+  --font-body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  /* Maße */
+  --max:1140px;
+  --narrow:780px;
+  --radius:18px;
+  --radius-lg:26px;
+  --shadow:0 18px 48px rgba(14,39,64,.13);
+  --shadow-sm:0 8px 24px rgba(14,39,64,.08);
+  --nav-h:70px;
+}
+
+/* ---------- 3. GRUNDGERÜST ------------------------------------------ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px);-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.65;
+  font-size:1.02rem;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+::selection{background:var(--gold-lt);color:var(--navy-deep)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+.wrap{width:min(var(--max),calc(100% - 44px));margin-inline:auto}
+.narrow{width:min(var(--narrow),calc(100% - 44px));margin-inline:auto}
+section{padding:clamp(3.8rem,7.5vw,7rem) 0}
+.center{text-align:center}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- 4. TYPOGRAFIE ------------------------------------------- */
+/* Brush-Look der Werbemittel: Anton, versal, eng, leicht geneigte Wirkung */
+h1,h2,.display{
+  font-family:var(--font-display);
+  font-weight:400;
+  text-transform:uppercase;
+  color:var(--navy);
+  line-height:1.13;
+  letter-spacing:.005em;
+}
+h1{font-size:clamp(2.3rem,5.6vw,4.35rem)}
+h2{font-size:clamp(1.85rem,4vw,3.1rem)}
+h3{font-family:var(--font-body);font-weight:700;font-size:1.2rem;color:var(--navy);line-height:1.32;letter-spacing:-.01em}
+
+/* Die goldene Pinsel-80 aus den Werbemitteln */
+.num80{
+  color:var(--gold);
+  font-size:1.22em;
+  line-height:.8;
+  display:inline-block;
+  transform:rotate(-3deg) translateY(.03em);
+  padding-inline:.04em;
+}
+
+/* Handschrift-Akzente: „Und was braucht es heute dafür?" */
+.script{
+  font-family:var(--font-script);
+  font-weight:600;
+  text-transform:none;
+  color:var(--gold-ink);
+  font-size:clamp(1.35rem,2.6vw,2rem);
+  line-height:1.25;
+  letter-spacing:.005em;
+}
+.script.on-dark{color:var(--gold-lt)}
+
+/* Kicker über den Überschriften */
+.kicker{
+  font-size:.74rem;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold-ink);
+  margin-bottom:.95rem;
+}
+.on-dark .kicker,.kicker.on-dark{color:var(--gold-lt)}
+
+.lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);max-width:64ch}
+p + p{margin-top:.9rem}
+
+/* Goldener Pinselstrich unter Überschriften */
+.stroke{
+  width:112px;height:7px;margin-top:1.15rem;
+  background:var(--gold);
+  border-radius:40% 60% 55% 45%/60% 40% 60% 40%;
+  transform:rotate(-.6deg);
+}
+.stroke.on-dark{background:var(--gold-lt)}
+.center .stroke,.khk-head .stroke{margin-inline:auto}
+
+/* ---------- 5. BUTTONS ---------------------------------------------- */
+.btn-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.9rem}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  min-height:52px;padding:.8rem 1.5rem;
+  border-radius:999px;border:2px solid transparent;
+  font-weight:700;font-size:.97rem;text-decoration:none;white-space:nowrap;
+  cursor:pointer;transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--navy);color:var(--white);box-shadow:var(--shadow-sm)}
+.btn-primary:hover{background:var(--navy-2)}
+.btn-gold{background:var(--gold);color:var(--navy-deep);box-shadow:var(--shadow-sm)}
+.btn-gold:hover{background:var(--gold-lt)}
+.btn-ghost{border-color:var(--navy);color:var(--navy);background:transparent}
+.btn-ghost:hover{background:rgba(14,39,64,.06)}
+.btn-ghost-lt{border-color:var(--gold-lt);color:var(--gold-lt);background:transparent}
+.btn-ghost-lt:hover{background:rgba(226,178,92,.12)}
+
+/* ---------- 6. MESSE-BANNER ----------------------------------------- */
+.messe-bar{display:none;background:var(--navy-deep);color:var(--gold-lt)}
+.messe-bar.on{display:block}
+.messe-bar a{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;
+  padding:.7rem 1.2rem;text-decoration:none;
+  font-size:.88rem;font-weight:600;text-align:center;
+}
+.messe-bar a:hover{background:rgba(226,178,92,.1)}
+.messe-bar b{color:var(--white)}
+.messe-bar .go{color:var(--white);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 7. NAVIGATION ------------------------------------------- */
+nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(250,246,238,.93);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--navy)}
+.brand svg{width:32px;height:32px;flex:none}
+.brand-txt{display:flex;flex-direction:column;line-height:1.12}
+.brand-txt .n{font-weight:700;font-size:.99rem;letter-spacing:-.01em}
+.brand-txt .n b{font-weight:800}
+.brand-txt .c{font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-ink);font-weight:600}
+.nav-links{display:flex;gap:1.4rem;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.89rem;font-weight:600}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a.messe-link{color:var(--gold-ink);font-weight:700}
+.nav-cta{padding:.6rem 1.15rem;min-height:44px;font-size:.89rem}
+.nav-toggle{display:none;border:1px solid var(--line);background:var(--cream);padding:.5rem .8rem;border-radius:10px;color:var(--navy);font-weight:700;font-size:.85rem;cursor:pointer}
+
+/* ---------- 8. HERO -------------------------------------------------- */
+.hero{position:relative;padding:0;overflow:hidden}
+/* Das Foto läuft nach unten weich aus, statt an einer Kante abzuschneiden.
+   Die Maske blendet Foto UND Fallback-Verlauf gemeinsam in die Seitenfarbe.
+   Werte hier ändern, wenn der Übergang kürzer oder länger werden soll. */
+.hero-media{
+  position:relative;
+  min-height:clamp(360px,46vw,600px);
+  -webkit-mask-image:linear-gradient(180deg,
+    #000 0%, #000 40%,
+    rgba(0,0,0,.92) 55%, rgba(0,0,0,.66) 69%,
+    rgba(0,0,0,.40) 84%, rgba(0,0,0,.14) 93%, rgba(0,0,0,0) 100%);
+  mask-image:linear-gradient(180deg,
+    #000 0%, #000 40%,
+    rgba(0,0,0,.92) 55%, rgba(0,0,0,.66) 69%,
+    rgba(0,0,0,.40) 84%, rgba(0,0,0,.14) 93%, rgba(0,0,0,0) 100%);
+  /* Fallback-Verlauf: Sonnenaufgang über Bergen, falls kein Foto da ist */
+  background:
+    radial-gradient(circle at 62% 74%, rgba(255,214,140,.95) 0%, rgba(240,183,101,.6) 22%, rgba(240,183,101,0) 52%),
+    linear-gradient(180deg,#0f2b48 0%,#24506f 22%,#3d6484 42%,#7d8e91 64%,#c79c69 84%,#eec78d 100%);
+  background-color:#3d6484;
+}
+.hero-media img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;
+}
+.hero-media:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,27,46,.30) 0%,rgba(8,27,46,.04) 30%,rgba(8,27,46,0) 55%);
+}
+.hero-body{position:relative;z-index:3;margin-top:clamp(-5rem,-6.2vw,-2.8rem);padding-bottom:clamp(3rem,6vw,5rem)}
+.hero h1{max-width:16ch}
+.hero .script{margin-top:.85rem}
+.hero-copy{margin-top:1.35rem;font-size:1.06rem;color:var(--muted);max-width:56ch}
+.hero-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem}
+.hero-meta span{
+  padding:.4rem .85rem;border:1px solid var(--line);border-radius:999px;
+  background:rgba(255,255,255,.7);font-size:.83rem;font-weight:600;color:var(--navy);
+}
+
+/* ---------- 9. KOPF · HERZ · KÖRPER --------------------------------- */
+.khk{background:var(--cream)}
+.khk-head{text-align:center;margin-bottom:clamp(2.4rem,4vw,3.4rem)}
+.khk-head .lead{margin:1.1rem auto 0}
+.khk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.khk-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:2.1rem 1.7rem;text-align:center;box-shadow:var(--shadow-sm);
+}
+.khk-card svg{width:60px;height:60px;margin:0 auto .95rem}
+.khk-card img{width:84px;height:84px;margin:0 auto 1.05rem}
+.khk-card .label{
+  font-family:var(--font-display);font-size:1.5rem;text-transform:uppercase;
+  letter-spacing:.02em;margin-bottom:.7rem;line-height:1;
+}
+.khk-card p{color:var(--muted);font-size:.98rem}
+.khk-card.kopf svg{color:var(--kopf)} .khk-card.kopf .label{color:var(--kopf)}
+.khk-card.herz svg{color:var(--herz)} .khk-card.herz .label{color:var(--herz)}
+.khk-card.koerper svg{color:var(--koerper)} .khk-card.koerper .label{color:var(--koerper)}
+
+/* ---------- 10. DUNKLE BLÖCKE (Wegweiser, Preis, Abschluss) --------- */
+.dark{background:var(--navy);color:#e6ecf2}
+.dark h1,.dark h2{color:var(--white)}
+.dark h3{color:var(--white)}
+.dark .lead{color:#bcc9d6}
+.dark p{color:#c4d0dc}
+
+/* Wegweiser-Trio */
+.signposts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:clamp(2.4rem,4vw,3.4rem)}
+.signpost{
+  border:1px solid var(--line-dark);border-radius:var(--radius);
+  background:rgba(255,255,255,.04);padding:1.9rem 1.6rem;
+  display:flex;flex-direction:column;gap:.75rem;
+}
+.signpost svg{width:46px;height:46px;color:var(--gold-lt)}
+.signpost .n{font-size:.72rem;font-weight:700;letter-spacing:.18em;color:var(--gold-lt)}
+.signpost h3{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:1.32rem;letter-spacing:.01em}
+.signpost p{font-size:.96rem}
+
+/* ---------- 11. LEBENSLANDKARTE ------------------------------------- */
+.map{background:var(--sand)}
+.map-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+.map-frame{
+  border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid rgba(14,39,64,.14);background:#d9c7a3;position:relative;
+}
+.map-frame:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);pointer-events:none}
+
+
+/* Teaser-Ausschnitt der Lebenslandkarte + PDF-Download */
+.map-frame{display:block}
+.map-frame .badge-cut{
+  position:absolute;left:1rem;top:1rem;z-index:2;
+  background:rgba(8,27,46,.82);color:var(--gold-lt);
+  font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  padding:.4rem .8rem;border-radius:999px;backdrop-filter:blur(6px);
+}
+a.map-frame{transition:transform .25s ease,box-shadow .25s ease}
+a.map-frame:hover{transform:translateY(-3px);box-shadow:0 24px 60px rgba(14,39,64,.2)}
+a.map-frame:hover .badge-cut{background:var(--gold);color:var(--navy-deep)}
+.map-caption{margin-top:.9rem;font-size:.86rem;color:var(--muted)}
+.floorplan{
+  margin-top:1.5rem;padding:1.15rem 1.35rem;border-radius:14px;
+  background:rgba(14,39,64,.06);border-left:4px solid var(--gold);
+}
+.floorplan b{color:var(--navy)}
+.dl{display:inline-flex;align-items:center;gap:.55rem}
+.dl svg{width:19px;height:19px;flex:none}
+.dl small{font-weight:600;opacity:.75;font-size:.82rem}
+
+/* ---------- 12. GESPRÄCH & ERGEBNIS --------------------------------- */
+.talk-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4vw,3.6rem);align-items:start}
+.checklist{list-style:none;display:grid;gap:.85rem;margin-top:1.6rem}
+.checklist li{position:relative;padding-left:2.1rem;color:var(--muted)}
+.checklist li:before{
+  content:"";position:absolute;left:0;top:.42em;width:1.15rem;height:.6rem;
+  border-left:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);
+  transform:rotate(-45deg);border-radius:1px;
+}
+/* Überschriften auf dunklen Karten: sonst greift die globale navy-Farbe
+   und der Text verschwindet im Hintergrund. */
+.outcome h3,.price-side h3,.signpost h3{color:var(--white)}
+.outcome{
+  background:var(--navy);color:var(--white);border-radius:var(--radius-lg);
+  padding:clamp(1.8rem,3vw,2.5rem);box-shadow:var(--shadow);
+}
+.outcome ol{list-style:none;counter-reset:o;display:grid;gap:1.25rem;margin-top:1.4rem}
+.outcome li{counter-increment:o;position:relative;padding-left:3rem;color:#c4d0dc;font-size:.97rem}
+.outcome li:before{
+  content:counter(o,decimal-leading-zero);position:absolute;left:0;top:-.15em;
+  font-family:var(--font-display);font-size:1.5rem;color:var(--gold-lt);line-height:1;
+}
+.outcome li b{color:var(--white);display:block;margin-bottom:.15rem;font-size:1.02rem}
+
+/* ---------- 13. FÜR WEN --------------------------------------------- */
+.cases{background:var(--cream)}
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:2.6rem}
+.case{
+  background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--gold);
+  border-radius:14px;padding:1.4rem 1.5rem;color:var(--muted);font-size:.99rem;
+}
+.case b{color:var(--navy);display:block;margin-bottom:.3rem}
+
+/* ---------- 14. MIKE ------------------------------------------------ */
+.mike-grid{display:grid;grid-template-columns:300px 1fr;gap:clamp(2rem,4vw,3.6rem);align-items:center}
+.mike-photo{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.sign{font-family:var(--font-script);font-size:2rem;color:var(--gold-ink);margin-top:1.4rem;line-height:1}
+
+/* ---------- 15. PREIS ----------------------------------------------- */
+.price-box{display:grid;grid-template-columns:1.05fr .95fr;gap:1.4rem;margin-top:clamp(2.2rem,4vw,3rem)}
+.price-main{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:clamp(1.9rem,3vw,2.6rem);box-shadow:var(--shadow-sm);
+}
+.price-tag{font-family:var(--font-display);font-size:clamp(3rem,7vw,4.6rem);color:var(--navy);line-height:.95}
+.price-tag small{font-family:var(--font-body);font-size:.9rem;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.price-side{
+  background:var(--navy);color:#c4d0dc;border-radius:var(--radius-lg);
+  padding:clamp(1.9rem,3vw,2.6rem);
+}
+.price-side ol{list-style:none;counter-reset:s;display:grid;gap:1rem;margin-top:1.3rem}
+.price-side li{counter-increment:s;position:relative;padding-left:2.5rem;font-size:.96rem}
+.price-side li:before{
+  content:counter(s);position:absolute;left:0;top:.1em;
+  width:1.7rem;height:1.7rem;border-radius:50%;border:1.5px solid var(--gold-lt);
+  color:var(--gold-lt);font-size:.82rem;font-weight:700;display:grid;place-items:center;
+}
+.price-side li b{color:var(--white)}
+
+/* Messe-Hinweis-Kachel innerhalb der Preissektion */
+.messe-hint{
+  margin-top:1.6rem;padding:1.15rem 1.35rem;border-radius:14px;
+  background:var(--navy-deep);color:var(--gold-lt);
+  display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:space-between;
+}
+.messe-hint p{color:#d6e0ea;font-size:.93rem;margin:0}
+.messe-hint b{color:var(--gold-lt)}
+.messe-hint a{color:var(--white);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+
+/* ---------- 16. FAQ -------------------------------------------------- */
+.faq-list{display:grid;gap:.7rem;margin-top:2.4rem}
+details{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+details[open]{box-shadow:var(--shadow-sm)}
+summary{
+  cursor:pointer;list-style:none;padding:1.15rem 3.2rem 1.15rem 1.4rem;
+  font-weight:700;color:var(--navy);position:relative;font-size:1rem;
+}
+summary::-webkit-details-marker{display:none}
+summary:after{
+  content:"";position:absolute;right:1.4rem;top:50%;width:.62rem;height:.62rem;
+  border-right:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);
+  transform:translateY(-70%) rotate(45deg);transition:transform .2s ease;
+}
+details[open] summary:after{transform:translateY(-30%) rotate(-135deg)}
+.answer{padding:0 1.4rem 1.35rem;color:var(--muted);font-size:.98rem}
+
+/* ---------- 17. ABSCHLUSS & CLAIM ----------------------------------- */
+.final{background:var(--navy-deep);color:#e6ecf2;text-align:center}
+.final h2{color:var(--white)}
+.final .lead{margin:1.2rem auto 0;color:#bcc9d6}
+.final .btn-row{justify-content:center}
+.claim{
+  display:flex;gap:clamp(1rem,3vw,2.4rem);justify-content:center;flex-wrap:wrap;
+  margin-top:clamp(2.6rem,5vw,3.6rem);padding-top:2.2rem;
+  border-top:1px solid var(--line-dark);
+  font-family:var(--font-display);text-transform:uppercase;
+  letter-spacing:.14em;font-size:.88rem;color:var(--gold-lt);
+}
+.compass-final{width:64px;height:64px;margin:0 auto 1.8rem;color:var(--gold-lt)}
+
+/* ---------- 18. FOOTER ---------------------------------------------- */
+footer{background:var(--navy-deep);color:#8b9cad;padding:2.2rem 0;border-top:1px solid var(--line-dark)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:1.2rem;flex-wrap:wrap;font-size:.85rem}
+.foot-links{display:flex;gap:1.3rem;list-style:none;flex-wrap:wrap}
+.foot-links a{text-decoration:none}
+.foot-links a:hover{color:var(--gold-lt)}
+
+/* ---------- 19. MESSESEITE (messe.html) ----------------------------- */
+.messe-page{background:var(--navy);color:#e6ecf2}
+.messe-hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 74% 62%, rgba(255,206,126,.5) 0%, rgba(226,178,92,0) 46%),
+    linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 48%,var(--navy-2) 100%);
+  padding:clamp(3rem,7vw,5.5rem) 0 clamp(3rem,6vw,4.5rem);
+}
+.messe-hero .wrap{position:relative;z-index:2}
+.badge{
+  display:inline-block;background:var(--gold);color:var(--navy-deep);
+  font-weight:800;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:.5rem 1.05rem;border-radius:999px;margin-bottom:1.3rem;
+}
+.offer-card{
+  border:2px solid var(--gold);border-radius:var(--radius-lg);
+  background:rgba(8,27,46,.62);padding:clamp(1.9rem,3.5vw,2.8rem);
+  text-align:center;max-width:400px;
+}
+.offer-card .cap{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);font-weight:700}
+/* Angebotskachel ohne Preisangabe — die Zahl steht bewusst nur bei Cal.com */
+.offer-card .offer-mark{width:64px;height:64px;color:var(--gold-lt);margin:1.4rem auto .3rem}
+.offer-card .offer-line{
+  font-family:var(--font-display);text-transform:uppercase;
+  color:#fff;font-size:clamp(1.35rem,2.6vw,1.85rem);line-height:1.18;
+  margin-top:.9rem;
+}
+.offer-card .offer-sub{
+  font-family:var(--font-script);color:var(--gold-lt);
+  font-size:1.35rem;line-height:1.2;margin-top:.5rem;
+}
+.offer-card .offer-note{color:#9fb0c1;font-size:.86rem;margin-top:.9rem}
+.offer-card .brutto{font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;color:#c4d0dc;font-weight:600}
+.offer-card .was{color:#9fb0c1;font-size:.95rem;margin-top:.45rem}
+.messe-hero-grid{display:grid;grid-template-columns:1.15fr auto;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+.legal{font-size:.86rem;color:#9fb0c1;margin-top:1.1rem}
+.legal b{color:var(--gold-lt);font-weight:600}
+
+/* ---------- 20. RESPONSIV ------------------------------------------- */
+@media(max-width:1080px){
+  .khk-grid,.signposts{grid-template-columns:1fr;gap:1rem}
+  .map-grid,.talk-grid,.mike-grid,.price-box,.messe-hero-grid{grid-template-columns:1fr}
+  .map-grid .map-copy{order:-1}
+  .mike-photo{max-width:260px}
+  .offer-card{max-width:none}
+  .nav-links{
+    display:none;position:absolute;top:var(--nav-h);left:0;right:0;
+    flex-direction:column;align-items:flex-start;gap:0;
+    background:var(--paper);border-bottom:1px solid var(--line);padding:.5rem 22px 1rem;
+    box-shadow:var(--shadow-sm);
+  }
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{display:block;padding:.75rem 0;font-size:1rem;border-bottom:1px solid var(--line)}
+  .nav-toggle{display:block}
+  .nav-cta{display:none}
+}
+@media(max-width:620px){
+  .wrap,.narrow{width:calc(100% - 32px)}
+  .brand-txt .c{display:none}          /* Claim bricht sonst in der Kopfzeile um */
+  .messe-bar a{flex-direction:column;gap:.25rem}
+  .case-grid{grid-template-columns:1fr}
+  .btn{width:100%}
+  .hero-body{margin-top:-2.4rem}
+  .hero-media img{object-position:24% 44%}   /* Wanderer bleibt im Ausschnitt */
+  .khk-card,.signpost,.case,.price-main,.price-side,.outcome{padding:1.5rem 1.3rem}
+  .foot{flex-direction:column;align-items:flex-start}
+  .foot-links{flex-direction:column;gap:.55rem}
+  .messe-hint{flex-direction:column;align-items:flex-start}
+}
+
+/* ---------- 21. BEWEGUNG REDUZIEREN --------------------------------- */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .btn:hover{transform:none}
+}
+
+/* ---------- 22. DRUCK ------------------------------------------------ */
+@media print{
+  nav,.messe-bar,.btn-row,.hero-media{display:none!important}
+  body{background:#fff;color:#000}
+  section{padding:1.2rem 0;break-inside:avoid}
+}
+
+/* =====================================================================
+   ERGÄNZUNGEN FÜR index2.html
+   Nur zusätzliche Klassen — index.html bleibt davon unberührt.
+   ===================================================================== */
+
+/* ---------- Pfad: Zielbild → Standort → Richtung → Schritte --------- */
+.pfad{
+  list-style:none;display:grid;grid-template-columns:repeat(4,1fr);
+  position:relative;margin-top:clamp(2.6rem,5vw,3.8rem);
+}
+.pfad:before{
+  content:"";position:absolute;left:12.5%;right:12.5%;top:15px;height:2px;
+  background:var(--gold);opacity:.4;
+}
+.pfad li{position:relative;padding:0 1rem;text-align:center}
+.pfad li:before{
+  content:"";display:block;width:16px;height:16px;border-radius:50%;
+  background:var(--paper);border:3px solid var(--gold);
+  margin:8px auto 1.6rem;position:relative;z-index:2;
+}
+.pfad .step{
+  font-family:var(--font-display);text-transform:uppercase;
+  font-size:clamp(1rem,1.5vw,1.2rem);letter-spacing:.05em;color:var(--navy);
+  line-height:1.15;
+}
+.pfad p{color:var(--muted);font-size:.95rem;margin-top:.5rem}
+/* Auf dunklem Grund */
+.dark .pfad:before{background:var(--gold-lt);opacity:.45}
+.dark .pfad li:before{background:var(--navy);border-color:var(--gold-lt)}
+.dark .pfad .step{color:#fff}
+.dark .pfad p{color:#bcc9d6}
+
+@media(max-width:820px){
+  .pfad{grid-template-columns:1fr;gap:1.9rem;padding-left:2.6rem}
+  .pfad:before{left:7px;right:auto;top:12px;bottom:14px;width:2px;height:auto}
+  .pfad li{text-align:left;padding:0}
+  .pfad li:before{position:absolute;left:-2.6rem;top:1px;margin:0}
+}
+
+/* ---------- Ruhiger Gedanke: „Du brauchst keinen Plan bis 80" ------- */
+.quiet{background:var(--navy);color:#c4d0dc;text-align:center}
+.quiet .satz{
+  font-family:var(--font-display);text-transform:uppercase;color:#fff;
+  font-size:clamp(1.8rem,4vw,3rem);line-height:1.14;letter-spacing:.005em;
+}
+.quiet .satz em{color:var(--gold-lt);font-style:normal}
+.quiet .drei{
+  list-style:none;display:grid;gap:.9rem;
+  margin:clamp(2.2rem,4vw,3rem) auto 0;max-width:34rem;text-align:left;
+}
+.quiet .drei li{
+  position:relative;padding-left:2rem;color:#fff;
+  font-size:clamp(1.05rem,1.7vw,1.22rem);font-weight:600;
+}
+.quiet .drei li:before{
+  content:"";position:absolute;left:0;top:.55em;
+  width:9px;height:9px;border-radius:50%;background:var(--gold-lt);
+}
+.quiet .nachsatz{
+  max-width:52rem;margin:clamp(2.2rem,4vw,3rem) auto 0;
+  color:#bcc9d6;font-size:1.02rem;
+}
+
+/* ---------- Roadmap als Dokument-Mockup ---------------------------- */
+.roadmap-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4vw,3.6rem);align-items:center}
+.doc{
+  background:var(--white);border-radius:6px;
+  box-shadow:0 26px 60px rgba(14,39,64,.22),0 2px 0 rgba(14,39,64,.05);
+  padding:clamp(1.7rem,3vw,2.4rem);
+  transform:rotate(-1.4deg);
+  border:1px solid rgba(14,39,64,.08);
+  position:relative;
+}
+.doc:before,.doc:after{
+  content:"";position:absolute;inset:0;border-radius:6px;background:var(--white);
+  border:1px solid rgba(14,39,64,.07);z-index:-1;
+}
+.doc:before{transform:rotate(2.2deg) translate(6px,5px)}
+.doc:after{transform:rotate(4deg) translate(12px,10px);opacity:.55}
+.doc-kicker{
+  font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-ink);
+}
+.doc-title{
+  font-family:var(--font-display);text-transform:uppercase;color:var(--navy);
+  font-size:1.5rem;line-height:1.1;margin-top:.4rem;
+}
+.doc-rule{height:3px;background:var(--gold);border-radius:2px;margin:1rem 0 1.4rem;width:74px}
+.doc-list{list-style:none;display:grid;gap:1.05rem}
+.doc-list b{
+  display:block;color:var(--navy);font-size:.94rem;font-weight:700;margin-bottom:.42rem;
+}
+.doc-list i{
+  display:block;height:7px;border-radius:4px;background:#e7e2d6;
+  margin-bottom:.3rem;
+}
+.doc-list i.k{width:62%}
+.doc-list i.m{width:84%}
+.doc-foot{
+  margin-top:1.6rem;padding-top:1rem;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+
+/* ---------- Mikes Kernsatz ----------------------------------------- */
+.credo{
+  font-family:var(--font-display);text-transform:uppercase;color:var(--navy);
+  font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.16;
+}
+.credo em{color:var(--gold);font-style:normal}
+
+/* ---------- Preiszeile Messe (abschaltbar) -------------------------- */
+.messepreis{
+  margin-top:1.5rem;padding:1.1rem 1.3rem;border-radius:14px;
+  background:var(--navy-deep);color:#d6e0ea;
+  display:flex;gap:1rem;align-items:baseline;flex-wrap:wrap;
+}
+.messepreis .zahl{
+  font-family:var(--font-display);color:var(--gold-lt);
+  font-size:2rem;line-height:1;
+}
+.messepreis .txt{font-size:.93rem}
+.messepreis .txt b{color:#fff}
+
+@media(max-width:940px){
+  .roadmap-grid{grid-template-columns:1fr}
+  .roadmap-grid .doc-copy{order:-1}
+  .doc{transform:none;max-width:460px}
+  .doc:before,.doc:after{display:none}
+}
+
+/* Dezenter Hinweis unter dem Kaufknopf — bewusst klein und dem CTA
+   untergeordnet, damit er das Gold nicht konkurrenziert. */
+.hinweis-48{
+  margin-top:.85rem;font-size:.82rem;line-height:1.5;
+  color:var(--muted);max-width:34ch;
+}
+
+/* Merksatz am Ende der Schritte-Sektion: entkräftet den Einwand
+   „ich kann doch nicht bis 80 planen" — bewusst keine Karte, kein Icon,
+   keine Nummer, damit er nicht wie ein vierter Schritt wirkt. */
+.richtung{
+  max-width:56ch;margin:clamp(2.6rem,5vw,3.6rem) auto 0;
+  padding-top:clamp(1.8rem,3vw,2.4rem);
+  border-top:1px solid var(--line-dark);
+  text-align:center;font-size:1.05rem;line-height:1.6;
+}
+.richtung b{
+  display:block;margin-bottom:.7rem;font-weight:400;
+  font-family:var(--font-display);text-transform:uppercase;
+  color:#fff;font-size:clamp(1.28rem,2.5vw,1.85rem);
+  line-height:1.16;letter-spacing:.005em;
+}
