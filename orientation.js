@@ -64,7 +64,7 @@ if (form) {
       vorname: value('vorname'), nachname: value('nachname'), email: value('email'),
       telefon: value('telefon'), firma: value('firma'),
       rueckruf: form.elements.rueckruf.checked ? 'ja' : 'nein', nachricht: value('nachricht'),
-      dsgvo: true, einwilligung_am: new Date().toISOString(), datenschutz_version: '2026-10-10'
+      dsgvo: true, einwilligung_am: new Date().toISOString(), datenschutz_version: '2026-10-13'
     };
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 20000);
