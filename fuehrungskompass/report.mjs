@@ -1,4 +1,4 @@
-import {chart,chartNote,drawRosettePdf,directionDescriptions} from './rosette.mjs';
+import {chart,chartNote,chartLegend,calculationNote,reachableMax,drawRosettePdf,directionDescriptions} from './rosette.mjs';
 import {situations,dimensions,patterns,methodText,VERSION,EMAIL,BOOKING} from './data.mjs';
 import {evaluate,scoreLines,potential,keys} from './engine.mjs';
 export function reportBlocks(state){
@@ -6,13 +6,13 @@ export function reportBlocks(state){
  add('title','Dein Führungskompass');add('subtitle',`Persönliche Reflexion • Fassung ${VERSION}`);
  add('p','Acht Entscheidungen. Ein Anlass zum Weiterdenken. Dieses Ergebnis ist eine Momentaufnahme deiner gewählten Prioritäten, keine Eignungsbeurteilung und keine Empfehlung für oder gegen eine Führungsrolle.');
  add('chart','Deine sechs Handlungsrichtungen');
- add('small','Gold und *: nach der Rechenregel hervorgehoben, einschließlich Gleichständen. Alle sechs Richtungen bleiben sichtbar.');
+ chartLegend.forEach(t=>add('small',t)); add('small','Goldene ausgefüllte Punkte und *: hervorgehobene Richtungen, einschließlich Gleichständen.');
  add('small',chartNote);
  add('p','Welche Richtung erkennst du wieder – und welche möchtest du bewusster nutzen?');
- add('page','Deine Handlungsrichtungen im Detail');
+ add('page','Deine Handlungsrichtungen im Detail');add('p',calculationNote);
  add('h','Alle sechs Richtungen');
  add('p','Mit * hervorgehoben: '+r.highlighted.map(k=>dimensions[k].name).join(', ')+'. '+(r.boundaryTie?'Gleichstände an der Grenze der ersten beiden Plätze sind vollständig berücksichtigt.':'Diese Richtungen liegen nach der offengelegten Rechenregel auf den ersten beiden Plätzen.')+' Daraus folgt kein Vergleich mit anderen Menschen.');
- for(const k of keys){add('h',dimensions[k].name+(r.highlighted.includes(k)?' *':''));add('p',directionDescriptions[k]);add('p',`Antwortbelege: ${r.evidence[k].map(e=>e.id).join(', ')}. Vergleichswert: ${r.raw[k]} / ${potential[k]}.`);add('p',`Frage zum Weiterdenken: ${dimensions[k].question}`);add('p',`Ein mögliches Experiment: ${dimensions[k].idea}`);}
+ for(const k of keys){add('h',dimensions[k].name+(r.highlighted.includes(k)?' *':''));add('p',directionDescriptions[k]);add('p',`Antwortbelege: ${r.evidence[k].map(e=>e.id).join(', ')}. Vergleichswert: ${r.raw[k]} / ${potential[k]}. Erreichbar: ${reachableMax[k]} Rohpunkte.`);add('p',`Frage zum Weiterdenken: ${dimensions[k].question}`);add('p',`Ein mögliches Experiment: ${dimensions[k].idea}`);}
  add('h','Was davon passt zu dir?');add('p','Du darfst dich wiederfinden, widersprechen oder eine andere Deutung haben. Welche Aussage passt zu einer echten Erfahrung? Was fehlt? Vielleicht möchtest du eine kleine Gelegenheit zur Verantwortung ausprobieren und dir danach Rückmeldung holen. Du musst aus diesem Ergebnis keine Berufsentscheidung ableiten.');
  add('h','Muster in deinen Antworten');
  if(!r.patterns.length)add('p','Keines der zwei definierten Muster wurde ausgelöst. Das ist weder ein Vorteil noch ein Nachteil und bedeutet nicht, dass du keine wiederkehrenden Gewohnheiten hast.');
@@ -42,7 +42,7 @@ export async function createPdf(state,{PDFLib,fontkit,fontBytes}={}){
  const navy=PDFLib.rgb(.063,.169,.251),gold=PDFLib.rgb(.50,.38,.18),muted=PDFLib.rgb(.28,.34,.37);let page,y;const width=595.28,height=841.89,margin=48,contentWidth=width-2*margin;
  const fresh=()=>{page=pdf.addPage([width,height]);y=height-58;page.drawText('BIETE ORIENTIERUNG  /  FÜHRUNGSKOMPASS',{x:margin,y,size:9,font,color:gold});y-=35;};
  const wrap=(text,size)=>{const out=[];for(const paragraph of text.split('\n')){if(!paragraph){out.push('');continue;}let line='';for(const word of paragraph.split(/\s+/)){if(font.widthOfTextAtSize((line?line+' ':'')+word,size)<=contentWidth){line+=(line?' ':'')+word;continue;}if(line){out.push(line);line='';}let piece='';for(const c of word){if(font.widthOfTextAtSize(piece+c,size)>contentWidth){out.push(piece);piece='';}piece+=c;}line=piece;}out.push(line);}return out;};
- fresh();for(const block of reportBlocks(state)){if(block.type==='chart'){const h=contentWidth*chart.height/chart.width;if(y-h<65)fresh();drawRosettePdf(page,evaluate(state.answers),{font,PDFLib,x:margin,top:y,width:contentWidth});y-=h+12;continue;}if(block.type==='page'){fresh();}const heading=['title','page','h'].includes(block.type),size=block.type==='title'?27:block.type==='page'?22:block.type==='h'?12:block.type==='small'?9:10.5;const lines=wrap(safe(block.text),size),leading=size*1.38;
+ fresh();for(const block of reportBlocks(state)){if(block.type==='chart'){const drawingWidth=440,h=drawingWidth*chart.height/chart.width;if(y-h<65)fresh();drawRosettePdf(page,evaluate(state.answers),{font,PDFLib,x:(width-drawingWidth)/2,top:y,width:drawingWidth});y-=h+12;continue;}if(block.type==='page'){fresh();}const heading=['title','page','h'].includes(block.type),size=block.type==='title'?27:block.type==='page'?22:block.type==='h'?12:block.type==='small'?9:10.5;const lines=wrap(safe(block.text),size),leading=size*1.38;
  if(y<65+(heading?lines.length*leading+60:Math.min(lines.length,2)*leading))fresh();if(heading)y-=5;
  for(const line of lines){if(y<65)fresh();page.drawText(line,{x:margin,y,size,font,color:heading?navy:block.type==='subtitle'?gold:muted});y-=leading;}y-=heading?6:7;
  }

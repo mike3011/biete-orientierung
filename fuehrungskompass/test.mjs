@@ -5,10 +5,11 @@ import {fileURLToPath} from 'node:url';
 import {dimensions,situations,VERSION,patterns} from './data.mjs';
 import {evaluate,potential,validState,emptyState,keys} from './engine.mjs';
 import {reportBlocks} from './report.mjs';
-import {chart,rosetteModel,rosetteSvg} from './rosette.mjs';
+import {chart,reachableMax,rosetteModel,rosetteSvg,drawRosettePdf} from './rosette.mjs';
 assert.equal(situations.length,8);
 for(const s of situations){assert.equal(s.options.length,4);assert.equal(new Set(s.options.map(o=>o.main)).size,4);for(const o of s.options){assert(keys.includes(o.main)&&keys.includes(o.secondary));assert.notEqual(o.main,o.secondary);assert(o.reason.length>20);}}
 assert.equal(Object.values(potential).reduce((a,b)=>a+b,0),96);
+const enumeratedMax=Object.fromEntries(keys.map(k=>[k,0]));
 let ties=0,minActive=6;const profiles=new Set(),winners=Object.fromEntries(keys.map(k=>[k,0]));let tieExample;
 for(let n=0;n<65536;n++){
  let rem=n;const a=Array.from({length:8},()=>{const v=rem%4;rem=Math.floor(rem/4);return v;});const r=evaluate(a);
@@ -16,19 +17,24 @@ for(let n=0;n<65536;n++){
  assert.deepEqual(r.raw,independent);assert.equal(Object.values(r.raw).reduce((a,b)=>a+b),24);assert(r.highlighted.length>=2);
  const sorted=keys.map(k=>({key:k,n:independent[k],d:potential[k]})).sort((x,y)=>y.n*x.d-x.n*y.d);
  const expected=sorted.filter(x=>x.n*sorted[1].d>=sorted[1].n*x.d).map(x=>x.key);assert.deepEqual(r.highlighted,expected);
+ for(const k of keys)enumeratedMax[k]=Math.max(enumeratedMax[k],r.raw[k]);
  const rose=rosetteModel(r);assert.equal(rose.length,6);
- for(const d of rose){assert.equal(d.raw,independent[d.key]);assert.equal(d.value,independent[d.key]/potential[d.key]);assert.equal(d.highlighted,expected.includes(d.key));assert(Math.abs(Math.hypot(d.point.x-chart.cx,d.point.y-chart.cy)-chart.radius*d.value)<1e-10);}
+ for(const d of rose){assert(d.value<=.9);assert(d.raw<=d.maxRaw);assert.equal(d.maxRaw,reachableMax[d.key]);assert.equal(d.maxValue,d.maxRaw/potential[d.key]);assert(d.maxValue<=chart.max);assert(Math.abs(Math.hypot(d.maxPoint.x-chart.cx,d.maxPoint.y-chart.cy)-chart.radius*d.maxValue/chart.max)<1e-10);assert.equal(d.raw,independent[d.key]);assert.equal(d.value,independent[d.key]/potential[d.key]);assert.equal(d.highlighted,expected.includes(d.key));assert(Math.abs(Math.hypot(d.point.x-chart.cx,d.point.y-chart.cy)-chart.radius*d.value/chart.max)<1e-10);}
  for(const k of keys)assert.equal(r.evidence[k].reduce((s,e)=>s+e.points,0),r.raw[k]);
  for(const p of patterns)assert.equal(r.patterns.some(x=>x.id===p.id),p.options.filter(id=>r.ids.includes(id)).length>=p.threshold);
  if(r.boundaryTie){ties++;tieExample??=a;}minActive=Math.min(minActive,Object.values(r.raw).filter(x=>x>0).length);profiles.add(keys.map(k=>r.raw[k]).join(','));
  const best=sorted.filter(x=>x.n*sorted[0].d===sorted[0].n*x.d);for(const x of best)winners[x.key]+=1/best.length;
 }
+assert.deepEqual(enumeratedMax,reachableMax);assert.deepEqual(reachableMax,{DIA:11,KLA:14,ZUT:12,FUE:13,MUT:14,SOR:12});
 for(const invalid of [[],Array(8),Array(8).fill(null),Array(8).fill(-1),Array(8).fill(4),Array(8).fill('0'),Array(8).fill(.5)])assert.throws(()=>evaluate(invalid));
 assert(validState(emptyState()));assert(!validState({...emptyState(),version:'old'}));assert(!validState({...emptyState(),notes:['x']}));assert(!validState({...emptyState(),difficulty:Array(8).fill('unknown')}));
 const s={...emptyState(),answers:[0,1,2,3,0,1,2,3],notes:['<script>alert(1)</script> ÄÖÜ ß € 🧭',...Array(7).fill('')],difficulty:Array(8).fill('schwer')};
 const blocks=reportBlocks(s),joined=blocks.map(b=>b.text).join('\n');for(let i=0;i<8;i++)for(let j=0;j<4;j++){assert(joined.includes(`${i+1}${'ABCD'[j]}`));assert(joined.includes(situations[i].options[j].text));assert(joined.includes(situations[i].options[j].reason));}assert(joined.includes(s.notes[0]));
 const r1=evaluate(s.answers),r2=evaluate([...s.answers]);assert.deepEqual(r1,r2);assert.deepEqual(reportBlocks(s),reportBlocks(structuredClone(s)));
 for(const k of keys){assert(joined.includes(dimensions[k].name));assert(rosetteSvg(r1).includes(dimensions[k].name.replaceAll('&','&amp;')));}
+const svg=rosetteSvg(r1);assert.equal((svg.match(/class="maximum-marker"/g)||[]).length,6);assert(svg.includes('5 von 11 erreichbaren'));
+const circles=[];drawRosettePdf({drawCircle:o=>circles.push(o),drawText:()=>{},drawLine:()=>{}},r1,{font:{widthOfTextAtSize:(s,z)=>s.length*z/2},PDFLib:{rgb:(...v)=>v},x:0,top:640,width:720});const markers=circles.filter(c=>c.size===10);assert.equal(markers.length,6);rosetteModel(r1).forEach((d,i)=>{assert.equal(markers[i].x,d.maxPoint.x);assert.equal(markers[i].y,640-d.maxPoint.y);assert.equal(markers[i].color,undefined);});
+chart.max=.7;assert.throws(()=>rosetteModel(r1),/außerhalb/);chart.max=.9;
 const dir=new URL('.',import.meta.url);const hashes=Object.fromEntries(['data.mjs','engine.mjs','report.mjs','app.mjs','rosette.mjs'].map(name=>[name,crypto.createHash('sha256').update(fs.readFileSync(new URL(name,dir))).digest('hex')]));
-const report={version:VERSION,scope:'Technische Regelprüfung, keine psychometrische Validierung',combinations:65536,allPassed:true,rawPointsAlways:24,potential,profiles:profiles.size,minActiveDimensions:minActive,profilesWithTieAcrossSecondPlace:ties,tieExample,topShareUnderUniformRandomChoices:Object.fromEntries(keys.map(k=>[k,Number((winners[k]/65536).toFixed(6))])),checks:['Rosettenpositionen und Hervorhebungen für alle Kombinationen geprüft','Alle 32 Antworten gültig und gewichtet','Alle 65.536 Kombinationen gegen unabhängige Berechnung geprüft','Gleichstände an Platz zwei vollständig erhalten','Musterregeln gegen jede Kombination geprüft','Antwortbeiträge summieren sich exakt','Ungültige und unvollständige Eingaben abgewiesen','Alle Fragen, Antworten, Zuordnungen und Notizen im Bericht','Wiederholte Auswertung deterministisch'],sha256:hashes};
+const report={version:VERSION,scope:'Technische Regelprüfung, keine psychometrische Validierung',combinations:65536,allPassed:true,rawPointsAlways:24,potential,reachableMax,visualScale:chart.max,profiles:profiles.size,minActiveDimensions:minActive,profilesWithTieAcrossSecondPlace:ties,tieExample,topShareUnderUniformRandomChoices:Object.fromEntries(keys.map(k=>[k,Number((winners[k]/65536).toFixed(6))])),checks:['Erreichbare Maxima durch vollständige Enumeration bestätigt','SVG und PDF verwenden identische Maximalpositionen','Zu kleine Skala wird als Fehler erkannt','Rosettenpositionen und Hervorhebungen für alle Kombinationen geprüft','Alle 32 Antworten gültig und gewichtet','Alle 65.536 Kombinationen gegen unabhängige Berechnung geprüft','Gleichstände an Platz zwei vollständig erhalten','Musterregeln gegen jede Kombination geprüft','Antwortbeiträge summieren sich exakt','Ungültige und unvollständige Eingaben abgewiesen','Alle Fragen, Antworten, Zuordnungen und Notizen im Bericht','Wiederholte Auswertung deterministisch'],sha256:hashes};
 fs.writeFileSync(new URL('pruefung.json',dir),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
