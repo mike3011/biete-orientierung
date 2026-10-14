@@ -34,6 +34,7 @@
     "SOR": 0.161499
   },
   "checks": [
+    "Rosettenpositionen und Hervorhebungen für alle Kombinationen geprüft",
     "Alle 32 Antworten gültig und gewichtet",
     "Alle 65.536 Kombinationen gegen unabhängige Berechnung geprüft",
     "Gleichstände an Platz zwei vollständig erhalten",
@@ -46,7 +47,8 @@
   "sha256": {
     "data.mjs": "4f6e010b517e561066140344e0100dc5f52411c4df270ed2c1da89ef7fefc35d",
     "engine.mjs": "5257e49eb2a05c9572767172bd1a0c62fd83faa047220993f66a02fc5c8da19c",
-    "report.mjs": "338a46d81c28efb31daed109125643b5e74d2980fe50deb4c3b2ba7ed79d07b1",
-    "app.mjs": "9e1cfca566f0227b9e661b8ab240526a783dd2050eb9e07a3e35b2e367fbcdf3"
+    "report.mjs": "298d303810eb4b7015e63a470da284a256723071fb1c3431fcfd3beec6ad8fdc",
+    "app.mjs": "a076896b08ecebc94f4523c9c8457e4304bd305280e465f49ed2e715451a8160",
+    "rosette.mjs": "7e1c1abd243c175347756729b5c9cc7ae9f45cd0dcc244489fa11afcce14e925"
   }
 }
