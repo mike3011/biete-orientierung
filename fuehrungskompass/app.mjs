@@ -1,7 +1,7 @@
-import {rosetteSvg,chartNote,chartLegend,calculationNote,reachableMax,directionDescriptions} from './rosette.mjs';
+import {rosetteSvg,chartNote,chartLegend,calculationNote,reachableMax,directionDescriptions} from './rosette.mjs?v=20261014a';
 import {VERSION,dimensions,situations,patterns,methodText,EMAIL,BOOKING} from './data.mjs';
 import {emptyState,validState,validAnswer,evaluate,potential,keys,scoreLines} from './engine.mjs';
-import {reportBlocks,createPdf} from './report.mjs';
+import {reportBlocks,createPdf} from './report.mjs?v=20261014a';
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const storeKey='biete-fuehrungskompass-v1';let state=emptyState(),index=0,persist=false;
 try{const saved=localStorage.getItem(storeKey);if(saved){const x=JSON.parse(saved);if(validState(x)){state=x;persist=true;}else $('#storage-status').textContent='Ein älterer oder unvollständiger Speicherstand konnte nicht übernommen werden. Bitte beginne neu.';}}catch{$('#storage-status').textContent='Der Gerätespeicher ist nicht verfügbar. Du kannst den Kompass ohne Speicherung nutzen.';}

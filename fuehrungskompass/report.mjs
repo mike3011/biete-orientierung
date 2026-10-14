@@ -1,4 +1,4 @@
-import {chart,chartNote,chartLegend,calculationNote,reachableMax,drawRosettePdf,directionDescriptions} from './rosette.mjs';
+import {chart,chartNote,chartLegend,calculationNote,reachableMax,drawRosettePdf,directionDescriptions} from './rosette.mjs?v=20261014a';
 import {situations,dimensions,patterns,methodText,VERSION,EMAIL,BOOKING} from './data.mjs';
 import {evaluate,scoreLines,potential,keys} from './engine.mjs';
 export function reportBlocks(state){
