@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {dimensions,situations,VERSION,patterns} from './data.mjs';
 import {evaluate,potential,validState,emptyState,keys} from './engine.mjs';
 import {reportBlocks} from './report.mjs';
+import {chart,rosetteModel,rosetteSvg} from './rosette.mjs';
 assert.equal(situations.length,8);
 for(const s of situations){assert.equal(s.options.length,4);assert.equal(new Set(s.options.map(o=>o.main)).size,4);for(const o of s.options){assert(keys.includes(o.main)&&keys.includes(o.secondary));assert.notEqual(o.main,o.secondary);assert(o.reason.length>20);}}
 assert.equal(Object.values(potential).reduce((a,b)=>a+b,0),96);
@@ -15,6 +16,8 @@ for(let n=0;n<65536;n++){
  assert.deepEqual(r.raw,independent);assert.equal(Object.values(r.raw).reduce((a,b)=>a+b),24);assert(r.highlighted.length>=2);
  const sorted=keys.map(k=>({key:k,n:independent[k],d:potential[k]})).sort((x,y)=>y.n*x.d-x.n*y.d);
  const expected=sorted.filter(x=>x.n*sorted[1].d>=sorted[1].n*x.d).map(x=>x.key);assert.deepEqual(r.highlighted,expected);
+ const rose=rosetteModel(r);assert.equal(rose.length,6);
+ for(const d of rose){assert.equal(d.raw,independent[d.key]);assert.equal(d.value,independent[d.key]/potential[d.key]);assert.equal(d.highlighted,expected.includes(d.key));assert(Math.abs(Math.hypot(d.point.x-chart.cx,d.point.y-chart.cy)-chart.radius*d.value)<1e-10);}
  for(const k of keys)assert.equal(r.evidence[k].reduce((s,e)=>s+e.points,0),r.raw[k]);
  for(const p of patterns)assert.equal(r.patterns.some(x=>x.id===p.id),p.options.filter(id=>r.ids.includes(id)).length>=p.threshold);
  if(r.boundaryTie){ties++;tieExample??=a;}minActive=Math.min(minActive,Object.values(r.raw).filter(x=>x>0).length);profiles.add(keys.map(k=>r.raw[k]).join(','));
@@ -25,6 +28,7 @@ assert(validState(emptyState()));assert(!validState({...emptyState(),version:'ol
 const s={...emptyState(),answers:[0,1,2,3,0,1,2,3],notes:['<script>alert(1)</script> ÄÖÜ ß € 🧭',...Array(7).fill('')],difficulty:Array(8).fill('schwer')};
 const blocks=reportBlocks(s),joined=blocks.map(b=>b.text).join('\n');for(let i=0;i<8;i++)for(let j=0;j<4;j++){assert(joined.includes(`${i+1}${'ABCD'[j]}`));assert(joined.includes(situations[i].options[j].text));assert(joined.includes(situations[i].options[j].reason));}assert(joined.includes(s.notes[0]));
 const r1=evaluate(s.answers),r2=evaluate([...s.answers]);assert.deepEqual(r1,r2);assert.deepEqual(reportBlocks(s),reportBlocks(structuredClone(s)));
-const dir=new URL('.',import.meta.url);const hashes=Object.fromEntries(['data.mjs','engine.mjs','report.mjs','app.mjs'].map(name=>[name,crypto.createHash('sha256').update(fs.readFileSync(new URL(name,dir))).digest('hex')]));
-const report={version:VERSION,scope:'Technische Regelprüfung, keine psychometrische Validierung',combinations:65536,allPassed:true,rawPointsAlways:24,potential,profiles:profiles.size,minActiveDimensions:minActive,profilesWithTieAcrossSecondPlace:ties,tieExample,topShareUnderUniformRandomChoices:Object.fromEntries(keys.map(k=>[k,Number((winners[k]/65536).toFixed(6))])),checks:['Alle 32 Antworten gültig und gewichtet','Alle 65.536 Kombinationen gegen unabhängige Berechnung geprüft','Gleichstände an Platz zwei vollständig erhalten','Musterregeln gegen jede Kombination geprüft','Antwortbeiträge summieren sich exakt','Ungültige und unvollständige Eingaben abgewiesen','Alle Fragen, Antworten, Zuordnungen und Notizen im Bericht','Wiederholte Auswertung deterministisch'],sha256:hashes};
+for(const k of keys){assert(joined.includes(dimensions[k].name));assert(rosetteSvg(r1).includes(dimensions[k].name.replaceAll('&','&amp;')));}
+const dir=new URL('.',import.meta.url);const hashes=Object.fromEntries(['data.mjs','engine.mjs','report.mjs','app.mjs','rosette.mjs'].map(name=>[name,crypto.createHash('sha256').update(fs.readFileSync(new URL(name,dir))).digest('hex')]));
+const report={version:VERSION,scope:'Technische Regelprüfung, keine psychometrische Validierung',combinations:65536,allPassed:true,rawPointsAlways:24,potential,profiles:profiles.size,minActiveDimensions:minActive,profilesWithTieAcrossSecondPlace:ties,tieExample,topShareUnderUniformRandomChoices:Object.fromEntries(keys.map(k=>[k,Number((winners[k]/65536).toFixed(6))])),checks:['Rosettenpositionen und Hervorhebungen für alle Kombinationen geprüft','Alle 32 Antworten gültig und gewichtet','Alle 65.536 Kombinationen gegen unabhängige Berechnung geprüft','Gleichstände an Platz zwei vollständig erhalten','Musterregeln gegen jede Kombination geprüft','Antwortbeiträge summieren sich exakt','Ungültige und unvollständige Eingaben abgewiesen','Alle Fragen, Antworten, Zuordnungen und Notizen im Bericht','Wiederholte Auswertung deterministisch'],sha256:hashes};
 fs.writeFileSync(new URL('pruefung.json',dir),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));

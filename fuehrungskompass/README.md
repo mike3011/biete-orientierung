@@ -10,6 +10,10 @@ Der Test enumeriert alle 65.536 Antwortkombinationen und aktualisiert `pruefung.
 
 ## Aufbau
 
+Die Ergebnisrosette zeigt alle sechs Ausrichtungen auf der festen Skala 0 bis 1 (Rohpunkte / Katalogsumme). Der Außenring ist kein persönliches Ziel oder erreichbares Maximum. `rosette.mjs` liefert identische Geometrie für SVG, Druckansicht und Vektor-PDF; es gibt keine individuelle Skalierung, Grundpunkte oder flächenbasierte Bewertung. Gold und Stern kennzeichnen dieselben hervorgehobenen Werte einschließlich Gleichständen wie die Berechnung. Alle sechs Erläuterungen sind aufklappbar und im PDF enthalten.
+
+Die Startseite zeigt eine ausdrücklich fiktive Beispielauswertung. `node fuehrungskompass/generate-preview.mjs` erzeugt `assets/kompass-beispiel.svg` aus den im Generator dokumentierten Beispielantworten und derselben Rosettengeometrie. Nach Änderungen an Fragen oder Darstellung die Vorschau neu erzeugen.
+
 - `data.mjs`: vollständiger Katalog, Gewichtungen, Begründungen, Texte und Methodik.
 - `engine.mjs`: reine Berechnung mit Eingabevalidierung und exakten Gleichstandsvergleichen.
 - `report.mjs`: Berichtsinhalte und lokale PDF-Erzeugung; verwendet dieselbe Berechnung wie die Webseite.
