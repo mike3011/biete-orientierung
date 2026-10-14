@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0 • 13.10.2026",
+  "scope": "Technische Regelprüfung, keine psychometrische Validierung",
+  "combinations": 65536,
+  "allPassed": true,
+  "rawPointsAlways": 24,
+  "potential": {
+    "DIA": 14,
+    "KLA": 18,
+    "ZUT": 15,
+    "FUE": 17,
+    "MUT": 16,
+    "SOR": 16
+  },
+  "profiles": 21320,
+  "minActiveDimensions": 4,
+  "profilesWithTieAcrossSecondPlace": 2130,
+  "tieExample": [
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "topShareUnderUniformRandomChoices": {
+    "DIA": 0.174911,
+    "KLA": 0.161758,
+    "ZUT": 0.163422,
+    "FUE": 0.152802,
+    "MUT": 0.185608,
+    "SOR": 0.161499
+  },
+  "checks": [
+    "Alle 32 Antworten gültig und gewichtet",
+    "Alle 65.536 Kombinationen gegen unabhängige Berechnung geprüft",
+    "Gleichstände an Platz zwei vollständig erhalten",
+    "Musterregeln gegen jede Kombination geprüft",
+    "Antwortbeiträge summieren sich exakt",
+    "Ungültige und unvollständige Eingaben abgewiesen",
+    "Alle Fragen, Antworten, Zuordnungen und Notizen im Bericht",
+    "Wiederholte Auswertung deterministisch"
+  ],
+  "sha256": {
+    "data.mjs": "4f6e010b517e561066140344e0100dc5f52411c4df270ed2c1da89ef7fefc35d",
+    "engine.mjs": "5257e49eb2a05c9572767172bd1a0c62fd83faa047220993f66a02fc5c8da19c",
+    "report.mjs": "338a46d81c28efb31daed109125643b5e74d2980fe50deb4c3b2ba7ed79d07b1",
+    "app.mjs": "9e1cfca566f0227b9e661b8ab240526a783dd2050eb9e07a3e35b2e367fbcdf3"
+  }
+}

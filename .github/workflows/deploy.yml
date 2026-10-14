@@ -11,7 +11,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Assemble and verify local PDF libraries
+        run: node fuehrungskompass/build-assets.cjs
+
+      - name: Verify all leadership compass answer combinations
+        run: node fuehrungskompass/test.mjs
+
       - name: Deploy via SFTP
+        # Libraries are kept in reviewable transport chunks and verified first.
+        if: success()
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           username: ${{ secrets.SSH_USERNAME }}
@@ -21,3 +29,4 @@ jobs:
           local_path: './*'
           remote_path: ${{ secrets.REMOTE_TARGET }}
           sftp_only: true
+
