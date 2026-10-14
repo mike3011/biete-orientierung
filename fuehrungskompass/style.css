@@ -6,3 +6,7 @@
 .rosette-panel{margin:28px 0;background:#fff;border:1px solid var(--line);padding:22px 32px}.rosette-svg{display:block;width:100%;max-width:760px;height:auto;margin:auto}.rosette-svg a{cursor:pointer}.rosette-svg a:hover text,.rosette-svg a:focus text{text-decoration:underline}.rosette-panel figcaption{max-width:720px;margin:8px auto 0}.rosette-panel figcaption p{font-size:.82rem;margin:8px 0}.direction-detail{align-self:start;border:1px solid var(--line);background:white;padding:20px 24px}.direction-detail summary{font-size:1.02rem;cursor:pointer}.direction-detail summary small{display:block;margin-top:5px;color:var(--gold-ink);font-size:.77rem}.direction-detail:target{outline:2px solid var(--gold-ink);outline-offset:3px;scroll-margin-top:110px}.direction-content{font-size:.88rem;padding-top:14px}.direction-content p{font-size:inherit}.rosette-panel+ .result-cards{margin-top:20px}@media(max-width:500px){.rosette-panel{padding:12px 0}.rosette-panel figcaption{padding:0 16px}.direction-detail{padding:18px}.rosette-svg{min-width:0}}@media print{.print-report .rosette-svg{max-width:170mm;break-inside:avoid}.print-report .print-chart{break-inside:avoid}}
 
 @media screen and (max-width:500px){.rosette-label{font-size:30px}.rosette-value{font-size:24px}.rosette-tick{font-size:16px}}
+
+.rosette-legend{font-size:.82rem;padding-left:1.3em;line-height:1.6}.maximum-marker{pointer-events:none}@media screen and (max-width:500px){.rosette-value{font-size:20px}}
+
+@media screen and (max-width:500px){.rosette-value{font-size:18px}.rosette-label{font-size:27px}}

@@ -12,6 +12,15 @@
     "MUT": 16,
     "SOR": 16
   },
+  "reachableMax": {
+    "DIA": 11,
+    "KLA": 14,
+    "ZUT": 12,
+    "FUE": 13,
+    "MUT": 14,
+    "SOR": 12
+  },
+  "visualScale": 0.9,
   "profiles": 21320,
   "minActiveDimensions": 4,
   "profilesWithTieAcrossSecondPlace": 2130,
@@ -34,6 +43,9 @@
     "SOR": 0.161499
   },
   "checks": [
+    "Erreichbare Maxima durch vollständige Enumeration bestätigt",
+    "SVG und PDF verwenden identische Maximalpositionen",
+    "Zu kleine Skala wird als Fehler erkannt",
     "Rosettenpositionen und Hervorhebungen für alle Kombinationen geprüft",
     "Alle 32 Antworten gültig und gewichtet",
     "Alle 65.536 Kombinationen gegen unabhängige Berechnung geprüft",
@@ -47,8 +59,8 @@
   "sha256": {
     "data.mjs": "4f6e010b517e561066140344e0100dc5f52411c4df270ed2c1da89ef7fefc35d",
     "engine.mjs": "5257e49eb2a05c9572767172bd1a0c62fd83faa047220993f66a02fc5c8da19c",
-    "report.mjs": "298d303810eb4b7015e63a470da284a256723071fb1c3431fcfd3beec6ad8fdc",
-    "app.mjs": "a076896b08ecebc94f4523c9c8457e4304bd305280e465f49ed2e715451a8160",
-    "rosette.mjs": "7e1c1abd243c175347756729b5c9cc7ae9f45cd0dcc244489fa11afcce14e925"
+    "report.mjs": "f694f8bb8e31491ad2dfbe4d46da593f28b527a531ae5d5981df9720961a92d2",
+    "app.mjs": "30e397c4f93090a137ac68787724f517283e7748ab7edc26717350c1cefbb17f",
+    "rosette.mjs": "5a2f752d3be74d2e67c9a4fc908535c971a3dbf332c515aa3c5541a006f394bc"
   }
 }
